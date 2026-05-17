@@ -19,12 +19,60 @@
 
   <link rel="stylesheet" href="css/style.css" />
 
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1/bundled/lenis.min.js"></script>
+
 </head>
 
 <body>
 
+  <!-- CURSOR -->
+  <div id="cursor"></div>
+  <div id="cursor-ring"></div>
+
+  <!-- SOCIAL FLOAT -->
+  <div id="social-float">
+    <div class="sf-line"></div>
+    <div class="sf-links">
+      <a class="sf-link" href="https://instagram.com/gradora.official" target="_blank" aria-label="Follow on Instagram">
+        <div class="sf-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+            stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+            <circle cx="12" cy="12" r="4" />
+            <circle cx="17.5" cy="6.5" r=".8" fill="currentColor" stroke="none" />
+          </svg>
+        </div>
+        <span class="sf-label">Instagram</span>
+      </a>
+      <a class="sf-link" href="https://youtube.com/@gradora.official" target="_blank" aria-label="Subscribe on YouTube">
+        <div class="sf-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path
+              d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z" />
+            <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="currentColor" stroke="none" />
+          </svg>
+        </div>
+        <span class="sf-label">YouTube</span>
+      </a>
+      <a class="sf-link" href="https://facebook.com/gradora" target="_blank" aria-label="Follow on Facebook">
+        <div class="sf-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+          </svg>
+        </div>
+        <span class="sf-label">Facebook</span>
+      </a>
+    </div>
+    <div class="sf-line"></div>
+    <div class="sf-follow-text">Follow</div>
+  </div>
+
   <!-- NAV -->
-  <nav>
+  <nav id="nav">
     <a class="nav-logo" href="#">
       <img src="images/logo/logo.png" alt="Gradora Logo" class="nav-logo-img">
 
@@ -34,44 +82,47 @@
       </div>
     </a>
     <ul class="nav-links">
-      <li><a href="#products">Products</a></li>
-      <li><a href="#story">Our Story</a></li>
-      <li><a href="#why">Why Gradora</a></li>
+      <li><a href="#mission">Vision</a></li>
+      <li><a href="#universe">Universe</a></li>
+      <li><a href="#eats">Gradora.eats</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
-    <button class="nav-btn">Shop Now ↗</button>
+    <button class="nav-btn" onclick="document.getElementById('eats').scrollIntoView({behavior:'smooth'})">Shop Now
+      ↗</button>
   </nav>
 
   <!-- HERO -->
-  <section class="hero">
-    <div class="hero-bg-shape"></div>
-    <div class="hero-bg-dots"></div>
+  <section class="hero" id="home">
+    <div class="hero-mesh"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="hero-bgtext">Gradora</div>
 
-    <div class="hero-left">
-      <span class="hero-eyebrow fade-up">Premium Health Snacks · India</span>
-      <h1 class="fade-up d1">
-        Nature's <em>Finest Nuts</em>
-        &amp; Seeds
+    <div class="hero-content">
+      <div class="hero-eyebrow h-reveal h-d1"><span></span>A New Kind of Brand<span></span></div>
+      <h1 class="h-reveal h-d2">
+        <strong>Building</strong> brands<br />
+        with <em>Pure Aura</em>
       </h1>
-      <p class="hero-sub fade-up d2">
-        Handpicked with care, graded with precision. Gradora brings you 100% natural nuts, seeds and mixes — no
-        additives, no compromise, just pure goodness in every jar.
+      <div class="hero-sub-brand h-reveal h-d3">— gradora.in —</div>
+      <p class="hero-desc h-reveal h-d4">
+        Gradora is a multi-brand company rooted in quality, nature and purpose. We build product lines that stand for
+        something — and deliver on that promise, always.
       </p>
-      <div class="hero-badges fade-up d3">
-        <span class="badge">🌿 100% Natural</span>
-        <span class="badge">🚫 No Additives</span>
-        <span class="badge">📦 Fresh Packed</span>
-        <span class="badge">✋ Handpicked</span>
-      </div>
-      <div class="hero-actions fade-up d4">
+      <div class="hero-actions h-reveal h-d5">
         <button class="btn-primary"
-          onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">Shop the Collection</button>
-        <button class="btn-outline" onclick="document.getElementById('story').scrollIntoView({behavior:'smooth'})">Our
-          Story →</button>
+          onclick="document.getElementById('mission').scrollIntoView({behavior:'smooth'})">Discover Our Vision</button>
+        <button class="btn-outline" onclick="document.getElementById('eats').scrollIntoView({behavior:'smooth'})">Shop
+          Gradora.eats ↓</button>
       </div>
     </div>
+    <div class="scroll-hint">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
 
-    <div class="hero-right fade-up d3">
+    <!-- <div class="hero-right fade-up d3">
       <div class="hero-jar-wrap">
         <div class="hero-jar-ring"></div>
         <div class="hero-jar-ring"></div>
@@ -94,11 +145,11 @@
           Natural
         </div>
       </div>
-    </div>
+    </div> -->
   </section>
 
   <!-- TICKER -->
-  <div class="ticker" aria-hidden="true">
+  <div class="ticker">
     <div class="ticker-inner">
       <div class="ticker-item"><span class="ticker-dot"></span> Free Delivery Across India</div>
       <div class="ticker-item"><span class="ticker-dot"></span> 100% Natural — No Preservatives</div>
@@ -120,8 +171,187 @@
     </div>
   </div>
 
+  <!-- ══════════════════════════════
+  MISSION / BRAND IDENTITY
+  ══════════════════════════════ -->
+  <section class="mission" id="mission">
+    <div class="mission-left">
+      <p class="section-label reveal rd1">Who We Are</p>
+      <h2 class="section-title reveal rd2">We don't just make<br /><em>products</em> — we
+        build<br /><strong>identities.</strong></h2>
+      <p class="mission-desc reveal rd3">Gradora is a brand company. We create, develop and grow product lines — each
+        under its own identity, but united by a single philosophy: that everything we put our name on must be honest,
+        precise and worth your trust.</p>
+      <blockquote class="mission-quote reveal rd4">"Pure Aura, Perfect Grade." — a promise embedded in every product we
+        launch, from field to your hands.</blockquote>
+      <div class="mission-values">
+        <div class="mval reveal rd4">
+          <div class="mval-num">01</div>
+          <div class="mval-text">
+            <h4>Authenticity First</h4>
+            <p>No fillers, no misleading claims. What you see on the label is exactly what's inside — nothing more,
+              nothing less.</p>
+          </div>
+        </div>
+        <div class="mval reveal rd5">
+          <div class="mval-num">02</div>
+          <div class="mval-text">
+            <h4>Grade-Level Precision</h4>
+            <p>Every batch we release is graded, tested and held to a standard that earns the Gradora name. Consistency
+              is our craft.</p>
+          </div>
+        </div>
+        <div class="mval reveal rd6">
+          <div class="mval-num">03</div>
+          <div class="mval-text">
+            <h4>Built for the Long Run</h4>
+            <p>We're building brands that people will trust for decades — not trend-chasing companies that fade with the
+              next season.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mission-right reveal-r">
+      <div class="mission-card">
+        <div class="mission-card-eyebrow">The Gradora Promise</div>
+        <h3>One company.<br />Many expressions of<br /><em>quality.</em></h3>
+        <p>Each Gradora sub-brand operates in its own world but inherits the same DNA — precision sourcing, honest
+          labelling, and the kind of quality that makes people come back.</p>
+        <div class="mission-stats">
+          <div class="mstat"><span class="mstat-val">1+</span><span class="mstat-label">Sub-brands Live</span></div>
+          <div class="mstat"><span class="mstat-val">9+</span><span class="mstat-label">Products Listed</span></div>
+          <div class="mstat"><span class="mstat-val">4.8★</span><span class="mstat-label">Amazon Rating</span></div>
+          <div class="mstat"><span class="mstat-val">100%</span><span class="mstat-label">Natural Always</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ---- Universe ---- -->
+
+  <section class="universe" id="universe">
+    <div class="universe-header">
+      <p class="section-label reveal">The Gradora Universe</p>
+      <h2 class="section-title reveal rd2">Our Brand <em>Ecosystem</em></h2>
+      <p class="reveal rd3">Each sub-brand carries the Gradora spirit — pure, precise, purposeful. More divisions
+        coming.</p>
+    </div>
+
+    <div class="brands-grid reveal">
+      <!-- EATS — LIVE -->
+      <div class="brand-card eats active">
+        <div class="brand-card-label">Active · Food &amp; Nutrition</div>
+        <div class="brand-card-name">Gradora</div>
+        <div class="brand-card-sub">.eats</div>
+        <p class="brand-card-desc">Premium nuts, seeds and healthy snack mixes — handpicked, naturally graded, freshly
+          packed. India's answer to honest, nutritious snacking. Currently available on Amazon and Flipkart with 9+
+          products.</p>
+        <a class="brand-card-badge" href="#eats" style="text-decoration:none;">Explore Products →</a>
+        <div class="brand-card-num">01</div>
+      </div>
+
+      <!-- COMING SOON 2 -->
+      <div class="brand-card soon">
+        <div class="brand-card-label">Coming Soon · Lifestyle</div>
+        <div class="brand-card-name">Gradora</div>
+        <div class="brand-card-sub">.living</div>
+        <p class="brand-card-desc">A new chapter in mindful living — curated products for the home, the self and the
+          everyday ritual of living well. Details to follow.</p>
+        <div class="brand-card-badge">In Development</div>
+        <div class="brand-card-num">02</div>
+      </div>
+
+
+    </div>
+
+
+  </section>
+
+  <!--  MASCOT SECTION -->
+
+  <section class="mascot-section">
+    <div class="mascot-inner">
+      <div class="mascot-text reveal-l">
+        <p class="section-label">The Soul of Gradora</p>
+        <h2 class="section-title">Meet the <em>Gradora</em><br /><strong>Wizard</strong></h2>
+        <p class="mascot-desc">Every great brand has a soul. Ours is a wandering wizard — ancient, curious, and
+          relentless in the pursuit of the finest things nature has to offer. He traverses mountains, valleys and
+          forests seeking only what is pure, honest and perfectly graded.</p>
+        <p class="mascot-desc">You'll find him on every Gradora.eats jar, dressed for the ingredient inside — a quiet
+          promise that what you hold was found, chosen and packed with intention.</p>
+        <div class="mascot-traits">
+          <div class="mascot-trait reveal rd2">
+            <span class="mtrait-icon">🏔️</span>
+            <div>
+              <div class="mtrait-title">The Seeker</div>
+              <div class="mtrait-desc">Travels to the source of every ingredient — never settling for second best.</div>
+            </div>
+          </div>
+          <div class="mascot-trait reveal rd3">
+            <span class="mtrait-icon">⚖️</span>
+            <div>
+              <div class="mtrait-title">The Grader</div>
+              <div class="mtrait-desc">Holds every batch to an uncompromising standard before it earns the Gradora name.
+              </div>
+            </div>
+          </div>
+          <div class="mascot-trait reveal rd4">
+            <span class="mtrait-icon">🌿</span>
+            <div>
+              <div class="mtrait-title">The Guardian</div>
+              <div class="mtrait-desc">Protector of purity — no additives, no shortcuts, no exceptions.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!--=== GRADORA.EATS SECTION ===-->
+  <div class="eats-section" id="eats">
+    <!-- Banner Header -->
+    <div class="eats-banner">
+      <div class="eats-banner-inner">
+        <div class="eats-logo-block reveal-l">
+          <div class="eats-parent">A Gradora Sub-Brand</div>
+          <div class="eats-wordmark">gradora<span>.eats</span></div>
+          <div class="eats-tagline">Premium Nuts · Seeds · Healthy Mixes · Pure &amp; Natural</div>
+        </div>
+        <div class="eats-banner-right reveal-r">
+          <div class="eats-pills">
+            <span class="eats-pill">🌿 100% Natural</span>
+            <span class="eats-pill">🚫 No Additives</span>
+            <span class="eats-pill">✋ Handpicked</span>
+            <span class="eats-pill">📦 Fresh Packed</span>
+          </div>
+          <div class="eats-shop-links">
+            <a class="eats-shopbtn amazon" href="https://www.amazon.in/s?k=gradora" target="_blank">Shop Amazon ↗</a>
+            <a class="eats-shopbtn flipkart" href="https://www.flipkart.com/search?q=gradora" target="_blank">Shop
+              Flipkart ↗</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Products -->
+    <div class="eats-products">
+      <div class="eats-filter reveal">
+        <button class="eats-pill-btn on" data-cat="all">All Products</button>
+        <button class="eats-pill-btn" data-cat="nuts">Nuts & Dry Fruits</button>
+        <button class="eats-pill-btn" data-cat="seeds">Seeds</button>
+        <button class="eats-pill-btn" data-cat="mixes">Mixes</button>
+      </div>
+      <div class="eats-grid reveal" id="eats-grid">
+        <!-- cards injected by JS -->
+      </div>
+    </div><!-- /eats-products -->
+  </div><!-- /eats-section -->
+
+
   <!-- PROMISE -->
-  <div class="promise">
+  <!-- <div class="promise">
     <div class="promise-grid">
       <div class="promise-item">
         <div class="promise-icon">🌿</div>
@@ -144,314 +374,13 @@
         <p>Sealed fresh at source for maximum flavour and nutrition.</p>
       </div>
     </div>
-  </div>
+  </div> -->
 
   <!-- PRODUCTS -->
-  <section class="products-section" id="products">
-    <div class="products-header">
-      <div>
-        <p class="section-label">The Collection</p>
-        <h2 class="section-title">Our Products</h2>
-      </div>
-      <a class="view-all-link" href="https://www.amazon.in/s?k=gradora" target="_blank">View on Amazon →</a>
-    </div>
 
-    <div class="filter-row">
-      <button class="filter-pill active">All Products</button>
-      <button class="filter-pill">Nuts</button>
-      <button class="filter-pill">Seeds</button>
-      <button class="filter-pill">Mixes</button>
-    </div>
-
-    <div class="product-grid">
-
-      <!-- Cashew -->
-      <div class="product-card">
-        <div class="product-img" style="background:#ffffff;">
-          <span class="product-badge-best">Best Seller</span>
-          <div class="product-img-inner">
-            <img src="images/products/cashew.png" alt="W240 Cashew">
-          </div>
-        </div>
-        <div class="product-info">
-          <div class="product-cat">Premium Nuts</div>
-          <div class="product-name">W240 Cashew</div>
-          <div class="product-desc">Large-grade W240 cashews — buttery, naturally rich and freshly packed.</div>
-          <div class="product-meta">
-            <span>Protein: 18.22g</span><span>Fiber: 3.3g</span><span>350g</span>
-          </div>
-          <div class="product-footer">
-            <div>
-              <div class="product-price">₹699 <small>/ jar</small></div>
-            </div>
-            <div class="product-shop-btns">
-              <a class="shop-btn amazon" href="https://www.amazon.in/s?k=gradora+cashew" target="_blank">Amazon</a>
-              <a class="shop-btn flipkart" href="https://www.flipkart.com/search?q=gradora+cashew"
-                target="_blank">Flipkart</a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-
-
-      <!-- Almond -->
-      <div class="product-card">
-        <div class="product-img" style="background:#ffffff;">
-          <div class="product-img-inner">
-            <img src="images/products/almond.png" alt="Almond">
-          </div>
-        </div>
-        <div class="product-info">
-          <div class="product-cat">Premium Nuts</div>
-          <div class="product-name">Almond</div>
-          <div class="product-desc">Crisp, nutrient-dense almonds — no oil, no salt, just pure natural goodness.</div>
-          <div class="product-meta">
-            <span>Protein: 21.15g</span><span>Fiber: 12.5g</span><span>400g</span>
-          </div>
-          <div class="product-footer">
-            <div>
-              <div class="product-price">₹849 <small>/ jar</small></div>
-            </div>
-            <div class="product-shop-btns">
-              <a class="shop-btn amazon" href="https://www.amazon.in/s?k=gradora+almond" target="_blank">Amazon</a>
-              <a class="shop-btn flipkart" href="https://www.flipkart.com/search?q=gradora+almond"
-                target="_blank">Flipkart</a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Pistachio -->
-      <div class="product-card">
-        <div class="product-img" style="background:#ffffff;">
-          <span class="product-badge-new">New</span>
-          <div class="product-img-inner">
-            <img src="images/products/pistachio.png" alt="Pistachio">
-          </div>
-        </div>
-        <div class="product-info">
-          <div class="product-cat">Premium USA Nuts</div>
-          <div class="product-name">Pistachio</div>
-          <div class="product-desc">Premium USA pistachios — roasted naturally, packed at peak freshness.</div>
-          <div class="product-meta">
-            <span>Protein: 20.16g</span><span>Fiber: 10.3g</span><span>300g</span>
-          </div>
-          <div class="product-footer">
-            <div>
-              <div class="product-price">₹999 <small>/ jar</small></div>
-            </div>
-            <div class="product-shop-btns">
-              <a class="shop-btn amazon" href="https://www.amazon.in/s?k=gradora+pistachio" target="_blank">Amazon</a>
-              <a class="shop-btn flipkart" href="https://www.flipkart.com/search?q=gradora+pistachio"
-                target="_blank">Flipkart</a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Pumpkin Seed -->
-      <div class="product-card">
-        <div class="product-img" style="background:#ffffff;">
-          <div class="product-img-inner">
-            <img src="images/products/pumpkin.png" alt="Pumpkin Seed">
-          </div>
-        </div>
-        <div class="product-info">
-          <div class="product-cat">Premium Seeds</div>
-          <div class="product-name">Pumpkin Seed</div>
-          <div class="product-desc">High-protein pumpkin seeds — rich in zinc and essential minerals.</div>
-          <div class="product-meta">
-            <span>Protein: 30.23g</span><span>Zinc: 10g</span><span>400g</span>
-          </div>
-          <div class="product-footer">
-            <div>
-              <div class="product-price">₹549 <small>/ jar</small></div>
-            </div>
-            <div class="product-shop-btns">
-              <a class="shop-btn amazon" href="https://www.amazon.in/s?k=gradora+pumpkin+seed"
-                target="_blank">Amazon</a>
-              <a class="shop-btn flipkart" href="https://www.flipkart.com/search?q=gradora+pumpkin+seed"
-                target="_blank">Flipkart</a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Flax Seed -->
-      <div class="product-card">
-        <div class="product-img" style="background:#ffffff;">
-          <div class="product-img-inner">
-            <img src="images/products/flax_seed.png" alt="Flax Seed">
-          </div>
-        </div>
-        <div class="product-info">
-          <div class="product-cat">Premium Seeds</div>
-          <div class="product-name">Flax Seed</div>
-          <div class="product-desc">Omega-3 rich roasted flax seeds — the highest protein seed in our range.</div>
-          <div class="product-meta">
-            <span>Protein: 18.29g</span><span>Fiber: 27.3g</span><span>400g</span>
-          </div>
-          <div class="product-footer">
-            <div>
-              <div class="product-price">₹399 <small>/ jar</small></div>
-            </div>
-            <div class="product-shop-btns">
-              <a class="shop-btn amazon" href="https://www.amazon.in/s?k=gradora+flax+seed" target="_blank">Amazon</a>
-              <a class="shop-btn flipkart" href="https://www.flipkart.com/search?q=gradora+flax+seed"
-                target="_blank">Flipkart</a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Sunflower Seed -->
-      <div class="product-card">
-        <div class="product-img" style="background:#ffffff;">
-          <div class="product-img-inner">
-            <img src="images/products/sunflower.png" alt="Sunflower Seed">
-          </div>
-        </div>
-        <div class="product-info">
-          <div class="product-cat">Premium Seeds</div>
-          <div class="product-name">Sunflower Seed</div>
-          <div class="product-desc">Crunchy, nutty sunflower seeds loaded with Vitamin E and healthy fats.</div>
-          <div class="product-meta">
-            <span>Protein: 20.78g</span><span>Fiber: 10.5g</span><span>400g</span>
-          </div>
-          <div class="product-footer">
-            <div>
-              <div class="product-price">₹349 <small>/ jar</small></div>
-            </div>
-            <div class="product-shop-btns">
-              <a class="shop-btn amazon" href="https://www.amazon.in/s?k=gradora+sunflower+seed"
-                target="_blank">Amazon</a>
-              <a class="shop-btn flipkart" href="https://www.flipkart.com/search?q=gradora+sunflower+seed"
-                target="_blank">Flipkart</a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Black Raisin -->
-      <div class="product-card">
-        <div class="product-img" style="background:#ffffff;">
-          <div class="product-img-inner">
-            <img src="images/products/black_raisin.png" alt="Black Raisin">
-          </div>
-        </div>
-        <div class="product-info">
-          <div class="product-cat">Premium Dried Fruit</div>
-          <div class="product-name">Black Raisin</div>
-          <div class="product-desc">Naturally sweet, iron-rich black raisins — a classic snack with premium quality.
-          </div>
-          <div class="product-meta">
-            <span>Protein: 3.07g</span><span>Fiber: 3.7g</span><span>400g</span>
-          </div>
-          <div class="product-footer">
-            <div>
-              <div class="product-price">₹449 <small>/ jar</small></div>
-            </div>
-            <div class="product-shop-btns">
-              <a class="shop-btn amazon" href="https://www.amazon.in/s?k=gradora+black+raisin"
-                target="_blank">Amazon</a>
-              <a class="shop-btn flipkart" href="https://www.flipkart.com/search?q=gradora+black+raisin"
-                target="_blank">Flipkart</a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Seed Mix -->
-      <div class="product-card">
-        <div class="product-img" style="background:#ffffff;">
-          <span class="product-badge-best">Top Pick</span>
-          <div class="product-img-inner">
-            <img src="images/products/seed_mix.png" alt="Seed Mix">
-          </div>
-        </div>
-        <div class="product-info">
-          <div class="product-cat">Premium Seed Mix</div>
-          <div class="product-name">Seed Mix</div>
-          <div class="product-desc">Pumpkin 40% · Sunflower 35% · Flaxseed 25% — the ultimate daily seed blend.</div>
-          <div class="product-meta">
-            <span>Protein: 30g</span><span>Fiber: 14g</span><span>400g</span>
-          </div>
-          <div class="product-footer">
-            <div>
-              <div class="product-price">₹599 <small>/ jar</small></div>
-            </div>
-            <div class="product-shop-btns">
-              <a class="shop-btn amazon" href="https://www.amazon.in/s?k=gradora+seed+mix" target="_blank">Amazon</a>
-              <a class="shop-btn flipkart" href="https://www.flipkart.com/search?q=gradora+seed+mix"
-                target="_blank">Flipkart</a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Nut mix -->
-      <div class="product-card">
-        <div class="product-img" style="background:#ffffff;">
-          <span class="product-badge-best">Best Seller</span>
-          <div class="product-img-inner">
-            <img src="images/products/nut_mix.png" alt="Nut Mix">
-          </div>
-        </div>
-        <div class="product-info">
-          <div class="product-cat">Premium Nut Mix</div>
-          <div class="product-name">Nut Mix</div>
-          <div class="product-desc">4 ingredients: Cashew · Almond · Pistachio · Raisin.</div>
-          <div class="product-meta">
-            <span>Protein: 13.8g</span><span>Fiber: 5.1g</span><span>350g</span>
-          </div>
-          <div class="product-footer">
-            <div>
-              <div class="product-price">₹699 <small>/ jar</small></div>
-            </div>
-            <div class="product-shop-btns">
-              <a class="shop-btn amazon" href="https://www.amazon.in/s?k=gradora+nut+mix" target="_blank">Amazon</a>
-              <a class="shop-btn flipkart" href="https://www.flipkart.com/search?q=gradora+nut+mix"
-                target="_blank">Flipkart</a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 7-Blend Nut Mix -->
-      <div class="product-card">
-        <div class="product-img" style="background:#ffffff;">
-          <span class="product-badge-new">Signature</span>
-          <div class="product-img-inner">
-            <img src="images/products/7-blendM.png" alt="7-Blend Mix">
-          </div>
-        </div>
-        <div class="product-info">
-          <div class="product-cat">Premium Nut Mix</div>
-          <div class="product-name">7-Blend Mix</div>
-          <div class="product-desc">7 ingredients: Cashew · Almond · Pistachio · Raisin · Pumpkin · Sunflower ·
-            Flaxseed.</div>
-          <div class="product-meta">
-            <span>Protein: 16.1g</span><span>Fiber: 5.8g</span><span>250g</span>
-          </div>
-          <div class="product-footer">
-            <div>
-              <div class="product-price">₹799 <small>/ jar</small></div>
-            </div>
-            <div class="product-shop-btns">
-              <a class="shop-btn amazon" href="https://www.amazon.in/s?k=gradora+7+blend+mix" target="_blank">Amazon</a>
-              <a class="shop-btn flipkart" href="https://www.flipkart.com/search?q=gradora+nut+mix"
-                target="_blank">Flipkart</a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
 
   <!-- BRAND STORY -->
-  <div class="brand-story" id="story">
+  <!-- <div class="brand-story" id="story">
     <div class="story-left">
       <p class="section-label">Our Story</p>
       <h2 class="section-title">Born From a Trail, Built on Trust</h2>
@@ -510,12 +439,12 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 
   <!-- MASCOT -->
-  <div class="mascot-section">
+  <!-- <div class="mascot-section">
     <span class="mascot-emoji-lg">
-      <img src="images/character/mascot_1.png" alt="mascot" style="width:240px;height:240px;object-fit:contain;">
+      <img src="images/character/last.gif" alt="mascot" style="width:240px;height:240px;object-fit:contain;">
     </span>
     <h2>Meet the Gradora Wizard</h2>
     <p>Our beloved mascot travels the mountains and valleys, seeking only the finest ingredients. He appears on every
@@ -528,32 +457,32 @@
       <span class="trail-tag">✅ FSSAI Approved</span>
       <span class="trail-tag">📦 Airtight Sealed</span>
     </div>
-  </div>
+  </div> -->
 
   <!-- WHY GRADORA -->
   <section class="why-section" id="why">
-    <p class="section-label">Why Choose Us</p>
-    <h2 class="section-title">The Gradora Difference</h2>
+    <p class="section-label reveal">Why Choose Us</p>
+    <h2 class="section-title reveal rd2">The Gradora Difference</h2>
     <div class="why-grid">
-      <div class="why-card">
+      <div class="why-card reveal rd1">
         <div class="why-num">01</div>
         <h4>Premium Grading</h4>
         <p>We don't just source — we grade. Each product meets strict size and quality standards before it earns the
           Gradora label.</p>
       </div>
-      <div class="why-card">
+      <div class="why-card reveal rd2">
         <div class="why-num">02</div>
         <h4>Zero Additives</h4>
         <p>Pure ingredients, nothing else. No artificial flavours, no preservatives, no added salt or oil in any of our
           products.</p>
       </div>
-      <div class="why-card">
+      <div class="why-card reveal rd3">
         <div class="why-num">03</div>
         <h4>Nutrition Transparency</h4>
         <p>Every jar clearly lists protein, fiber and other key nutrition facts — so you always know exactly what you're
           eating.</p>
       </div>
-      <div class="why-card">
+      <div class="why-card reveal rd4">
         <div class="why-num">04</div>
         <h4>Convenient &amp; Accessible</h4>
         <p>Available on Amazon and Flipkart with fast pan-India delivery — healthy snacking has never been this easy to
@@ -577,35 +506,26 @@
   <footer>
     <div class="footer-top">
       <div>
-        <div class="footer-brand-name">Gradora</div>
+        <div class="footer-brand">Gradora</div>
         <div class="footer-brand-tag">Pure Aura, Perfect Grade.</div>
-        <p class="footer-brand-desc">Premium quality nuts, seeds and healthy snack mixes. Handpicked, naturally graded,
+        <p class="footer-desc">Premium quality nuts, seeds and healthy snack mixes. Handpicked, naturally graded,
           freshly packed — for those who live well.</p>
       </div>
       <div class="footer-col">
-        <h5>Products</h5>
+        <h5>The Brand</h5>
         <ul>
-          <li><a href="#">W240 Cashew</a></li>
-          <li><a href="#">Almond</a></li>
-          <li><a href="#">Pistachio</a></li>
-          <li><a href="#">Pumpkin Seed</a></li>
-          <li><a href="#">Flax Seed</a></li>
-          <li><a href="#">Sunflower Seed</a></li>
-          <li><a href="#">Seed Mix</a></li>
-          <li><a href="#">7-Blend Mix</a></li>
+          <li><a href="#mission">Our Vision</a></li>
+          <li><a href="#universe">Brand Universe</a></li>
+          <li><a href="#">Our Story</a></li>
+          <li><a href="#contact">Contact Us</a></li>
         </ul>
       </div>
       <div class="footer-col">
-        <h5>Shop On</h5>
+        <h5>Gradora.eats</h5>
         <ul>
+          <li><a href="#eats">All Products</a></li>
           <li><a href="https://www.amazon.in/s?k=gradora" target="_blank">Amazon India</a></li>
           <li><a href="https://www.flipkart.com/search?q=gradora" target="_blank">Flipkart</a></li>
-        </ul>
-        <h5 style="margin-top:1.5rem;">Company</h5>
-        <ul>
-          <li><a href="#">Our Story</a></li>
-          <li><a href="#">Blog</a></li>
-          <li><a href="#">Contact Us</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -618,16 +538,28 @@
         <h5 style="margin-top:1.5rem;">Legal</h5>
         <ul>
           <li><a href="#">Privacy Policy</a></li>
-          <li><a href="#">Terms of Use</a></li>
-          <li><a href="#">Return Policy</a></li>
+          <li><a href="#">Terms</a></li>
+          <li><a href="#">Returns</a></li>
         </ul>
       </div>
+
     </div>
     <div class="footer-bottom">
-      <span>© 2025 Gradora Foods · gradora.in · All rights reserved</span>
-      <span>Made with ❤️ in India · FSSAI Licensed</span>
+      <span>© 2025 Gradora · gradora.in · All rights reserved</span>
+      <span>Made with ❤️ in India &nbsp;·&nbsp; FSSAI Licensed &nbsp;·&nbsp; <a href="#">gradora.in</a></span>
     </div>
   </footer>
+
+  <!-- <div class="mascot-container">
+    <div class="character-wrapper" id="character-wrapper">
+      <img src="images/character/body.png" alt="Mascot Body" class="character-part character-body" id="character-body">
+
+      <img src="images/character/leg_left.png" alt="Left Leg" class="character-part character-leg character-leg-l"
+        id="character-leg-l">
+      <img src="images/character/leg_right.png" alt="Right Leg" class="character-part character-leg character-leg-r"
+        id="character-leg-r">
+    </div>
+  </div> -->
 
   <script src="js/script.js"></script>
 </body>
