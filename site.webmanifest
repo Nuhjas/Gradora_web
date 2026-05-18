@@ -1,0 +1,16 @@
+{
+  "id": "/",
+  "name": "Gradora — Pure Aura, Perfect Grade.",
+  "short_name": "Gradora",
+  "description": "Gradora is a multi-brand company building honest, quality-first product lines. Currently live: Gradora.eats — premium natural snacks.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#FAF7F0",
+  "theme_color": "#C8201A",
+  "lang": "en-IN",
+  "icons": [
+    { "src": "images/logo/favicon.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "images/logo/favicon.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}
