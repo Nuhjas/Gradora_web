@@ -476,11 +476,14 @@
     <ul class="nav-links">
       <li><a href="#mission">Vision</a></li>
       <li><a href="#universe">Universe</a></li>
-      <li><a href="#eats">Gradora.eats</a></li>
+      <li><a href="./eats/eats.html">Gradora.eats</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
-    <button class="nav-btn" onclick="document.getElementById('eats').scrollIntoView({behavior:'smooth'})">Shop Now
-      ↗</button>
+    <ul class="nav-link-about">
+      <li><a href="./about/about.html" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">About Us</a></li>
+    </ul>
+    <!-- <button class="nav-btn" onclick="document.getElementById('eats').scrollIntoView({behavior:'smooth'})">Shop Now
+      ↗</button> -->
   </nav>
 
   <!-- HERO -->
@@ -640,7 +643,7 @@
         <p class="brand-card-desc">Premium nuts, seeds and healthy snack mixes — handpicked, naturally graded, freshly
           packed. India's answer to honest, nutritious snacking. Currently available on Amazon and Flipkart with 9+
           products.</p>
-        <a class="brand-card-badge" href="#eats" style="text-decoration:none;">Explore Products →</a>
+        <a class="brand-card-badge" href="./eats/eats.html" style="text-decoration:none;">Explore Products →</a>
         <div class="brand-card-num">01</div>
       </div>
 
@@ -698,13 +701,24 @@
           </div>
         </div>
       </div>
+      <div class="mascot-figure reveal-r">
+        <div class="mascot-wrapper">
+          <img src="./images/character/mascot_1-eyes.png" alt="Gradora Wizard Mascot" class="mascot-image">
+          <div class="eye-socket left-eye">
+            <div class="pupil"></div>
+          </div>
+          <div class="eye-socket right-eye">
+            <div class="pupil"></div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
   <!--=== GRADORA.EATS SECTION ===-->
-  <div class="eats-section" id="eats">
+  <!-- <div class="eats-section" id="eats"> -->
     <!-- Banner Header -->
-    <div class="eats-banner">
+    <!-- <div class="eats-banner">
       <div class="eats-banner-inner">
         <div class="eats-logo-block reveal-l">
           <div class="eats-parent">A Gradora Sub-Brand</div>
@@ -725,21 +739,21 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
 
     <!-- Products -->
-    <div class="eats-products">
+    <!-- <div class="eats-products">
       <div class="eats-filter reveal">
         <button class="eats-pill-btn on" data-cat="all">All Products</button>
         <button class="eats-pill-btn" data-cat="nuts">Nuts & Dry Fruits</button>
         <button class="eats-pill-btn" data-cat="seeds">Seeds</button>
         <button class="eats-pill-btn" data-cat="mixes">Mixes</button>
       </div>
-      <div class="eats-grid reveal" id="eats-grid">
+      <div class="eats-grid reveal" id="eats-grid"> -->
         <!-- cards injected by JS -->
-      </div>
-    </div><!-- /eats-products -->
-  </div><!-- /eats-section -->
+        <!-- </div> -->
+      <!-- </div>/eats-products -->
+    <!-- </div>/eats-section -->
 
 
   <!-- PROMISE -->
@@ -915,7 +929,7 @@
       <div class="footer-col">
         <h5>Gradora.eats</h5>
         <ul>
-          <li><a href="#eats">All Products</a></li>
+          <li><a href="./eats/eats.html">All Products</a></li>
           <li><a href="https://www.amazon.in/s?k=gradora" target="_blank">Amazon India</a></li>
           <li><a href="https://www.flipkart.com/search?q=gradora" target="_blank">Flipkart</a></li>
         </ul>

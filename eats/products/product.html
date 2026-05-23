@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details - Gradora Eats</title>
+    <link href="https://fonts.googleapis.com/css2?family=MuseoModerno:ital,wght@0,300..900;1,300..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../css/eats.css">
+    <link rel="stylesheet" href="product.css">
+</head>
+
+<body>
+    <div id="cur"></div>
+    <div id="cur-r"></div>
+
+    <canvas id="stars-c"></canvas>
+
+    <nav class="nav-p" id="mainNav">
+        <a href="../eats.html" class="nav-back-p">← <span class="nl-g">Gradora</span><span class="nl-e">.eats</span></a>
+        <div class="nav-right">
+            <button class="cart-btn" id="cartBtn" aria-label="Cart">
+                <svg viewBox="0 0 24 24">
+                    <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" />
+                    <line x1="3" y1="6" x2="21" y2="6" />
+                    <path d="M16 10a4 4 0 01-8 0" />
+                </svg>
+                <span class="cart-badge" id="cartBadge">0</span>
+            </button>
+        </div>
+    </nav>
+
+    <main id="sp-container" class="sp-container">
+    </main>
+
+    <div class="c-overlay" id="cOverlay"></div>
+    <div class="c-drawer" id="cDrawer">
+        <div class="c-hd">
+            <h3>Your Cart</h3><button class="c-cls" id="cClose">×</button>
+        </div>
+        <div class="c-list" id="cList">
+            <div class="c-empty">Your cart is empty.<br><em style="font-size:.9rem;">Add some goodness above ↑</em>
+            </div>
+        </div>
+        <div class="c-ft">
+            <div class="c-tot"><span class="c-tot-l">Total</span><span class="c-tot-v" id="cTotal">₹0</span></div>
+            <p class="c-note">Fulfilled via Amazon &amp; Flipkart with secure pan-India delivery.</p>
+            <div class="c-cks">
+                <a class="c-amz" href="https://www.amazon.in/s?k=gradora" target="_blank">Buy on Amazon ↗</a>
+                <a class="c-flp" href="https://www.flipkart.com/search?q=gradora" target="_blank">Buy on Flipkart ↗</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="product.js"></script>
+</body>
+
+</html>

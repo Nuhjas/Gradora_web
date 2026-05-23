@@ -3,9 +3,29 @@
 const cursor = document.getElementById('cursor');
 const ring = document.getElementById('cursor-ring');
 let mx = 0, my = 0, rx = 0, ry = 0;
+
+// --- Eye tracking setup ---
+const eyeSockets = document.querySelectorAll(".mascot-section .eye-socket");
+const pupils = document.querySelectorAll(".mascot-section .pupil");
+const maxEyeMovement = 5;
+
 document.addEventListener('mousemove', e => {
   mx = e.clientX; my = e.clientY;
   cursor.style.left = mx + 'px'; cursor.style.top = my + 'px';
+
+  // Eye tracking — runs in same event, same mx/my
+  eyeSockets.forEach((eye, index) => {
+    const rect = eye.getBoundingClientRect();
+    const eyeCenterX = rect.left + rect.width / 2;
+    const eyeCenterY = rect.top + rect.height / 2;
+
+    const dx = mx - eyeCenterX;
+    const dy = my - eyeCenterY;
+    const angle = Math.atan2(dy, dx);
+    const distance = Math.min(Math.hypot(dx, dy) * 0.05, maxEyeMovement);
+
+    pupils[index].style.transform = `translate(${Math.cos(angle) * distance}px, ${Math.sin(angle) * distance}px)`;
+  });
 })
 function animRing() {
   rx += (mx - rx) * .12; ry += (my - ry) * .12;
@@ -273,125 +293,125 @@ const PRODUCTS = [
 
 ];
 // Track selected variant index per product
-const selectedVariant = {};
-PRODUCTS.forEach(p => { selectedVariant[p.id] = p.variants.length > 1 ? 1 : 0; }); // default middle
+// const selectedVariant = {};
+// PRODUCTS.forEach(p => { selectedVariant[p.id] = p.variants.length > 1 ? 1 : 0; }); // default middle
 
-function buildCard(p) {
-  const vi = selectedVariant[p.id];
-  const v = p.variants[vi];
-  const badgeHTML = p.badge
-    ? `<span class="eats-badge ${p.badge.cls}">${p.badge.text}</span>` : '';
+// function buildCard(p) {
+//   const vi = selectedVariant[p.id];
+//   const v = p.variants[vi];
+//   const badgeHTML = p.badge
+//     ? `<span class="eats-badge ${p.badge.cls}">${p.badge.text}</span>` : '';
 
-  const varBtns = p.variants.map((vr, i) => `
-    <button
-      class="var-btn ${i === vi ? 'on' : ''}"
-      data-pid="${p.id}" data-vi="${i}"
-      aria-label="${vr.label}"
-    >${vr.label}</button>
-  `).join('');
+//   const varBtns = p.variants.map((vr, i) => `
+//     <button
+//       class="var-btn ${i === vi ? 'on' : ''}"
+//       data-pid="${p.id}" data-vi="${i}"
+//       aria-label="${vr.label}"
+//     >${vr.label}</button>
+//   `).join('');
 
-  return `
-  <div class="eats-card" data-cat="${p.cat}" id="card-${p.id}">
-    <div class="eats-card-img" id="img-${p.id}"
-         style="--img-a:${v.imgA};--img-b:${v.imgB};">
-      ${badgeHTML}
-      <div class="eats-card-img-inner" id="emoji-${p.id}"><img src="${v.Image}" alt="${p.name}"></div>
-    </div>
-    <div class="eats-card-body">
-      <div class="eats-cat">${p.catLabel}</div>
-      <div class="eats-name">${p.name}</div>
-      <div class="eats-desc">${p.desc}</div>
-      <div class="eats-meta">
-        <span>Protein ${p.protein}</span>
-        <span>Fiber ${p.fiber}</span>
-      </div>
+//   return `
+//   <div class="eats-card" data-cat="${p.cat}" id="card-${p.id}">
+//     <div class="eats-card-img" id="img-${p.id}"
+//          style="--img-a:${v.imgA};--img-b:${v.imgB};">
+//       ${badgeHTML}
+//       <div class="eats-card-img-inner" id="emoji-${p.id}"><img src="${v.Image}" alt="${p.name}"></div>
+//     </div>
+//     <div class="eats-card-body">
+//       <div class="eats-cat">${p.catLabel}</div>
+//       <div class="eats-name">${p.name}</div>
+//       <div class="eats-desc">${p.desc}</div>
+//       <div class="eats-meta">
+//         <span>Protein ${p.protein}</span>
+//         <span>Fiber ${p.fiber}</span>
+//       </div>
 
-      <!-- VARIANT SELECTOR -->
-      <div class="var-row">${varBtns}</div>
+//       <!-- VARIANT SELECTOR -->
+//       <div class="var-row">${varBtns}</div>
 
-      <div class="eats-card-footer">
-        <div class="eats-price" id="price-${p.id}">
-          ₹<span class="price-num">${v.price}</span>
-          <small>/ ${v.label} jar</small>
-        </div>
-        <div class="eats-btns">
-          <a class="eats-shopbtn-sm amz" id="amz-${p.id}"
-             href="${v.amazon}" target="_blank">Amazon</a>
-          <a class="eats-shopbtn-sm flp" id="flp-${p.id}"
-             href="${v.flipkart}" target="_blank">Flipkart</a>
-        </div>
-      </div>
-    </div>
-  </div>`;
-}
+//       <div class="eats-card-footer">
+//         <div class="eats-price" id="price-${p.id}">
+//           ₹<span class="price-num">${v.price}</span>
+//           <small>/ ${v.label} jar</small>
+//         </div>
+//         <div class="eats-btns">
+//           <a class="eats-shopbtn-sm amz" id="amz-${p.id}"
+//              href="${v.amazon}" target="_blank">Amazon</a>
+//           <a class="eats-shopbtn-sm flp" id="flp-${p.id}"
+//              href="${v.flipkart}" target="_blank">Flipkart</a>
+//         </div>
+//       </div>
+//     </div>
+//   </div>`;
+// }
 
-function renderGrid(cat = 'all') {
-  const grid = document.getElementById('eats-grid');
-  grid.innerHTML = PRODUCTS
-    .filter(p => cat === 'all' || p.cat === cat)
-    .map(buildCard).join('');
-  attachVariantListeners();
-  // re-observe reveals
-  grid.querySelectorAll('.eats-card').forEach(el => io.observe(el));
-  // re-attach cursor hover
-  grid.querySelectorAll('a,button').forEach(el => {
-    el.addEventListener('mouseenter', () => { cursor.style.transform = 'translate(-50%,-50%) scale(2.5)'; ring.style.opacity = '.4'; });
-    el.addEventListener('mouseleave', () => { cursor.style.transform = 'translate(-50%,-50%) scale(1)'; ring.style.opacity = '1'; });
-  });
-}
+// function renderGrid(cat = 'all') {
+//   const grid = document.getElementById('eats-grid');
+//   grid.innerHTML = PRODUCTS
+//     .filter(p => cat === 'all' || p.cat === cat)
+//     .map(buildCard).join('');
+//   attachVariantListeners();
+//   // re-observe reveals
+//   grid.querySelectorAll('.eats-card').forEach(el => io.observe(el));
+//   // re-attach cursor hover
+//   grid.querySelectorAll('a,button').forEach(el => {
+//     el.addEventListener('mouseenter', () => { cursor.style.transform = 'translate(-50%,-50%) scale(2.5)'; ring.style.opacity = '.4'; });
+//     el.addEventListener('mouseleave', () => { cursor.style.transform = 'translate(-50%,-50%) scale(1)'; ring.style.opacity = '1'; });
+//   });
+// }
 
-function attachVariantListeners() {
-  document.querySelectorAll('.var-btn').forEach(btn => {
-    btn.addEventListener('click', e => {
-      e.stopPropagation();
-      const pid = btn.dataset.pid;
-      const vi = parseInt(btn.dataset.vi);
-      selectedVariant[pid] = vi;
+// function attachVariantListeners() {
+//   document.querySelectorAll('.var-btn').forEach(btn => {
+//     btn.addEventListener('click', e => {
+//       e.stopPropagation();
+//       const pid = btn.dataset.pid;
+//       const vi = parseInt(btn.dataset.vi);
+//       selectedVariant[pid] = vi;
 
-      const p = PRODUCTS.find(x => x.id === pid);
-      const v = p.variants[vi];
+//       const p = PRODUCTS.find(x => x.id === pid);
+//       const v = p.variants[vi];
 
-      // update image bg gradient
-      const imgEl = document.getElementById('img-' + pid);
-      imgEl.style.setProperty('--img-a', v.imgA);
-      imgEl.style.setProperty('--img-b', v.imgB);
+//       // update image bg gradient
+//       const imgEl = document.getElementById('img-' + pid);
+//       imgEl.style.setProperty('--img-a', v.imgA);
+//       imgEl.style.setProperty('--img-b', v.imgB);
 
-      // flip emoji with a quick pop animation
-      const emojiEl = document.getElementById('emoji-' + pid);
-      emojiEl.classList.add('pop');
-      setTimeout(() => { emojiEl.querySelector('img').src = v.Image; emojiEl.classList.remove('pop'); }, 140);
+//       // flip emoji with a quick pop animation
+//       const emojiEl = document.getElementById('emoji-' + pid);
+//       emojiEl.classList.add('pop');
+//       setTimeout(() => { emojiEl.querySelector('img').src = v.Image; emojiEl.classList.remove('pop'); }, 140);
 
-      // animate price change
-      const priceNum = document.querySelector(`#price-${pid} .price-num`);
-      const priceEl = document.getElementById('price-' + pid);
-      priceEl.classList.add('price-flash');
-      setTimeout(() => { priceNum.textContent = v.price; priceEl.classList.remove('price-flash'); }, 180);
+//       // animate price change
+//       const priceNum = document.querySelector(`#price-${pid} .price-num`);
+//       const priceEl = document.getElementById('price-' + pid);
+//       priceEl.classList.add('price-flash');
+//       setTimeout(() => { priceNum.textContent = v.price; priceEl.classList.remove('price-flash'); }, 180);
 
-      // update size label
-      document.querySelector(`#price-${pid} small`).textContent = `/ ${v.label} jar`;
+//       // update size label
+//       document.querySelector(`#price-${pid} small`).textContent = `/ ${v.label} jar`;
 
-      // update shop links
-      document.getElementById('amz-' + pid).href = v.amazon;
-      document.getElementById('flp-' + pid).href = v.flipkart;
+//       // update shop links
+//       document.getElementById('amz-' + pid).href = v.amazon;
+//       document.getElementById('flp-' + pid).href = v.flipkart;
 
-      // update active pill
-      document.querySelectorAll(`.var-btn[data-pid="${pid}"]`).forEach(b => b.classList.remove('on'));
-      btn.classList.add('on');
-    });
-  });
-}
+//       // update active pill
+//       document.querySelectorAll(`.var-btn[data-pid="${pid}"]`).forEach(b => b.classList.remove('on'));
+//       btn.classList.add('on');
+//     });
+//   });
+// }
 
-// Category filter
-document.querySelectorAll('.eats-pill-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.eats-pill-btn').forEach(b => b.classList.remove('on'));
-    btn.classList.add('on');
-    renderGrid(btn.dataset.cat);
-  });
-});
+// // Category filter
+// document.querySelectorAll('.eats-pill-btn').forEach(btn => {
+//   btn.addEventListener('click', () => {
+//     document.querySelectorAll('.eats-pill-btn').forEach(b => b.classList.remove('on'));
+//     btn.classList.add('on');
+//     renderGrid(btn.dataset.cat);
+//   });
+// });
 
 // Initial render
-renderGrid('all');
+// renderGrid('all');
 
 // Counter animation
 function animCount(el, target, suffix = '') {
@@ -431,6 +451,8 @@ document.querySelectorAll('.sf-link').forEach(link => {
   });
   link.addEventListener('mouseleave', () => link.classList.remove('hovered'));
 });
+
+
 
 // const lenis = new Lenis({
 //   smoothWheel:true

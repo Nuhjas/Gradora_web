@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Gradora.eats — Pure Aura, Perfect Grade.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500&family=MuseoModerno:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
+
+  <link rel="stylesheet" href="../eats/css/eats.css" />
+</head>
+
+<body>
+  <div class="page-transition">
+
+    <div class="pt-top"></div>
+
+    <div class="pt-bottom"></div>
+
+    <div class="pt-logo">
+      <img src="../images/logo/Asset 1@3x.png" alt="Gradora.eats Logo">
+      <!-- Gradora<em>.eats</em> -->
+    </div>
+
+  </div>
+
+  <div id="cur"></div>
+  <div id="cur-r"></div>
+
+
+  <nav class="nav" id="mainNav">
+    <a href="../index.html" class="nav-back">← gradora.in</a>
+    <a href="#" class="nav-logo"><span class="nl-g">Gradora</span><span class="nl-e">.eats</span></a>
+    <div class="nav-right">
+      <a href="#products" class="nav-item"><span class="nav-text">Products</span></a>
+      <a href="#benefits" class="nav-item"><span class="nav-text">Benefits</span></a>
+      <a href="#recipes" class="nav-item"><span class="nav-text">Recipes</span></a>
+      <button class="cart-btn" id="cartBtn" aria-label="Cart">
+        <svg viewBox="0 0 24 24">
+          <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" />
+          <line x1="3" y1="6" x2="21" y2="6" />
+          <path d="M16 10a4 4 0 01-8 0" />
+        </svg>
+        <span class="cart-badge" id="cartBadge">0</span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="markers">
+    <div class="markers-container">
+      <div class="markers-inner">
+
+        <div class="markers-block is--active" data-scrollto="#heroWrap">
+          <span class="markers-block__text">Start</span>
+          <span class="markers-block__line">
+            <svg width="32" height="8" viewBox="0 0 32 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path class="animated-line" d="M0 4C4 4 4 4 8 4C12 4 12 4 16 4C20 4 20 4 24 4C28 4 28 4 32 4"
+                stroke="currentColor" stroke-width="1.5" />
+            </svg>
+          </span>
+        </div>
+
+        <div class="markers-block" data-scrollto="#goalPanel">
+          <span class="markers-block__text">goal</span>
+          <span class="markers-block__line">
+            <svg width="32" height="8" viewBox="0 0 32 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path class="animated-line" d="M0 4C4 4 4 4 8 4C12 4 12 4 16 4C20 4 20 4 24 4C28 4 28 4 32 4"
+                stroke="currentColor" stroke-width="1.5" />
+            </svg>
+          </span>
+        </div>
+
+        <div class="markers-block" data-scrollto="#products">
+          <span class="markers-block__text">Products</span>
+          <span class="markers-block__line">
+            <svg width="32" height="8" viewBox="0 0 32 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path class="animated-line" d="M0 4C4 4 4 4 8 4C12 4 12 4 16 4C20 4 20 4 24 4C28 4 28 4 32 4"
+                stroke="currentColor" stroke-width="1.5" />
+            </svg>
+          </span>
+        </div>
+
+        <div class="markers-block" data-scrollto="#benefits">
+          <span class="markers-block__text">Benefits</span>
+          <span class="markers-block__line">
+            <svg width="32" height="8" viewBox="0 0 32 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path class="animated-line" d="M0 4 L6 4 L10 4 L16 4 L22 4 L27 4 L32 4" stroke="currentColor"
+                stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </span>
+        </div>
+
+        <div class="markers-block" data-scrollto="#recipes">
+          <span class="markers-block__text">Recipes</span>
+          <span class="markers-block__line">
+            <svg width="32" height="8" viewBox="0 0 32 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path class="animated-line" d="M0 4C4 4 4 4 8 4C12 4 12 4 16 4C20 4 20 4 24 4C28 4 28 4 32 4"
+                stroke="currentColor" stroke-width="1.5" />
+            </svg>
+          </span>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-wrap" id="heroWrap">
+    <div class="hero-sticky" id="heroSticky">
+
+      <canvas id="stars-c"></canvas>
+      <div class="h-glow"></div>
+      <div class="ss ss1"></div>
+      <div class="ss ss2"></div>
+      <div class="ss ss3"></div>
+
+      <div class="mw l6" id="mw6">
+        <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="g6" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#091508" />
+              <stop offset="100%" stop-color="#060F06" />
+            </linearGradient>
+          </defs>
+          <path d="M-50,420 C80,370 210,310 370,328 C530,346 610,272 760,244
+                 C910,216 1000,272 1150,248 C1260,230 1360,268 1490,285 L1490,910 L-50,910Z" fill="url(#g6)" />
+        </svg>
+      </div>
+
+      <div class="mw l5" id="mw5">
+        <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="g5" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#0C1E10" />
+              <stop offset="100%" stop-color="#091508" />
+            </linearGradient>
+          </defs>
+          <path d="M-50,475 C100,432 250,398 420,414 C590,430 665,368 820,346
+                 C975,324 1065,378 1220,356 C1330,340 1420,372 1490,388 L1490,910 L-50,910Z" fill="url(#g5)" />
+        </svg>
+      </div>
+
+      <div class="mw l4" id="mw4">
+        <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="g4" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#102814" />
+              <stop offset="100%" stop-color="#0C1E10" />
+            </linearGradient>
+          </defs>
+          <path d="M-50,530 C120,492 295,462 480,478 C665,494 745,436 910,414
+                 C1075,392 1165,444 1320,424 C1400,414 1455,430 1490,442 L1490,910 L-50,910Z" fill="url(#g4)" />
+        </svg>
+      </div>
+
+      <div class="mist mist-c"></div>
+
+      <div class="mw l3" id="mw3">
+        <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="g3" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#14321A" />
+              <stop offset="100%" stop-color="#102814" />
+            </linearGradient>
+          </defs>
+          <path d="M-50,578 C145,548 342,520 548,538 C754,556 834,504 1010,484
+                 C1186,464 1270,512 1420,496 C1455,492 1474,498 1490,504 L1490,910 L-50,910Z" fill="url(#g3)" />
+        </svg>
+      </div>
+
+      <div class="mist mist-b"></div>
+
+      <div class="mw l2" id="mw2">
+        <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="g2" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#193E20" />
+              <stop offset="100%" stop-color="#14321A" />
+            </linearGradient>
+          </defs>
+          <path d="M-50,634 C170,606 390,582 610,598 C830,614 912,568 1096,550
+                 C1280,532 1370,568 1490,562 L1490,910 L-50,910Z" fill="url(#g2)" />
+        </svg>
+      </div>
+
+      <div class="mist mist-a"></div>
+
+      <div class="jar-wrap" id="jarWrap">
+        <div class="jar-wrap" id="jarWrap">
+          <img src="../images/products/7-blendM.png" alt="Gradora Premium Jar"
+            style="width: 100%; display: block; height: auto;">
+        </div>
+      </div>
+
+      <div class="mw l1" id="mw1">
+        <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="g1" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#1E4A24" />
+              <stop offset="100%" stop-color="#193E20" />
+            </linearGradient>
+          </defs>
+          <path d="M-50,710 C100,690 280,672 460,684 C600,693 680,674 760,668
+                 C840,662 920,670 1040,660 C1180,648 1320,668 1490,674 L1490,910 L-50,910Z" fill="url(#g1)" />
+        </svg>
+      </div>
+
+      <div class="mw l0" id="mw0">
+        <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="g0" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#0C1A13" />
+              <stop offset="100%" stop-color="#07120D" />
+            </linearGradient>
+          </defs>
+          <path d="M-50,800 C80,788 220,778 380,784 C520,789 600,778 700,774
+                 C800,770 900,778 1060,772 C1220,766 1360,778 1490,782 L1490,910 L-50,910Z" fill="url(#g0)" />
+        </svg>
+      </div>
+
+      <div class="hero-txt" id="heroTxt">
+        <p class="h-eyebrow">A Gradora Sub-Brand · India</p>
+        <h1 class="h-brand">Gradora<em>.eats</em></h1>
+        <p class="h-promise">Nature's Finest, Perfectly Graded.</p>
+        <!-- <div class="h-pills">
+          <span class="h-pill">🌿 100% Natural</span>
+          <span class="h-pill">🚫 No Additives</span>
+          <span class="h-pill">✋ Handpicked</span>
+          <span class="h-pill">📦 Fresh Packed</span>
+        </div> -->
+        <div class="h-acts">
+          <a href="#products" class="btn-prim">Shop Now</a>
+          <a href="#benefits" class="btn-ghost">Benefits ↓</a>
+        </div>
+      </div>
+
+      <div class="sc">
+        <div class="sc-l"></div><span>Scroll</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="ticker">
+    <div class="ticker-inner">
+      <span class="ti"><span class="td"></span>Free Delivery Across India</span>
+      <span class="ti"><span class="td"></span>100% Natural — No Preservatives</span>
+      <span class="ti"><span class="td"></span>Premium W240 Cashews</span>
+      <span class="ti"><span class="td"></span>USA Pistachios</span>
+      <span class="ti"><span class="td"></span>Handpicked with Care</span>
+      <span class="ti"><span class="td"></span>Fresh Packed &amp; Sealed</span>
+      <span class="ti"><span class="td"></span>Now on Amazon &amp; Flipkart</span>
+      <span class="ti"><span class="td"></span>Pure Aura, Perfect Grade.</span>
+      <span class="ti"><span class="td"></span>Free Delivery Across India</span>
+      <span class="ti"><span class="td"></span>100% Natural — No Preservatives</span>
+      <span class="ti"><span class="td"></span>Premium W240 Cashews</span>
+      <span class="ti"><span class="td"></span>USA Pistachios</span>
+      <span class="ti"><span class="td"></span>Handpicked with Care</span>
+      <span class="ti"><span class="td"></span>Fresh Packed &amp; Sealed</span>
+      <span class="ti"><span class="td"></span>Now on Amazon &amp; Flipkart</span>
+      <span class="ti"><span class="td"></span>Pure Aura, Perfect Grade.</span>
+    </div>
+  </div>
+
+  <div class="stats" id="statsStrip">
+    <div class="s-item"><span class="s-val" data-target="10" data-suffix="+">0</span><span class="s-lbl">Products
+        Available</span></div>
+    <div class="s-item"><span class="s-val">4.8★</span><span class="s-lbl">Amazon Rating</span></div>
+    <div class="s-item"><span class="s-val">100%</span><span class="s-lbl">Natural Always</span></div>
+    <div class="s-item"><span class="s-val">Zero</span><span class="s-lbl">Additives. Ever.</span></div>
+  </div>
+
+  <!--
+  ═══════════════════════════════════════════════════════════
+  GRADORA.EATS — HEALTH GOALS SECTION
+  Paste this block AFTER <div class="stats" id="statsStrip">
+  and BEFORE <section class="prod-sec" id="products">
+  ═══════════════════════════════════════════════════════════
+-->
+
+  <section class="goals-sec" id="goals">
+
+    <div class="rv"><span class="sl" style="color:var(--orange);">Shop by Goal</span></div>
+    <h2 class="st rv d1">What's your <em>health goal</em> <span class="ht-today">today?</span></h2>
+    <p class="goals-intro rv d2">Every Gradora product is chosen for a reason. Tell us your goal — we'll tell you
+      exactly what to eat.</p>
+
+    <!-- ── Goal Tabs ── -->
+    <div class="gtabs" id="goalTabs">
+      <button class="gtb on" data-goal="skin">
+        <span class="gtb-icon">✨</span>
+        <span class="gtb-lbl">Glowing Skin</span>
+      </button>
+      <button class="gtb" data-goal="heart">
+        <span class="gtb-icon">🫀</span>
+        <span class="gtb-lbl">Healthier Heart</span>
+      </button>
+      <button class="gtb" data-goal="energy">
+        <span class="gtb-icon">⚡</span>
+        <span class="gtb-lbl">Boost Energy</span>
+      </button>
+      <button class="gtb" data-goal="brain">
+        <span class="gtb-icon">🧠</span>
+        <span class="gtb-lbl">Brain Focus</span>
+      </button>
+      <button class="gtb" data-goal="gut">
+        <span class="gtb-icon">🌾</span>
+        <span class="gtb-lbl">Gut Health</span>
+      </button>
+      <button class="gtb" data-goal="immunity">
+        <span class="gtb-icon">🛡️</span>
+        <span class="gtb-lbl">Immunity</span>
+      </button>
+    </div>
+
+    <!-- ── Main Goal Panel ── -->
+    <div class="gpanel" id="goalPanel">
+
+      <!-- Left column -->
+      <div class="gp-left">
+
+        <div class="gp-header">
+          <div class="gp-hicon" id="gpIcon">✨</div>
+          <div class="gp-hinfo">
+            <div class="gp-title" id="gpTitle">Glowing Skin</div>
+            <div class="gp-sub" id="gpSub">Antioxidants · Vitamin E · Zinc</div>
+          </div>
+          <span class="gp-badge" id="gpBadge">Skin &amp; Beauty</span>
+        </div>
+
+        <div class="gp-stats">
+          <div class="gp-stat">
+            <span class="gp-stat-lbl">Daily serving</span>
+            <span class="gp-stat-val" id="gpServing">25g</span>
+          </div>
+          <div class="gp-stat">
+            <span class="gp-stat-lbl">Key nutrient</span>
+            <span class="gp-stat-val" id="gpNutrient">Vit E</span>
+          </div>
+          <div class="gp-stat">
+            <span class="gp-stat-lbl">Benefit score</span>
+            <span class="gp-stat-val" id="gpScore">78%</span>
+          </div>
+        </div>
+
+        <div class="gp-prog-wrap">
+          <div class="gp-prog-track">
+            <div class="gp-prog-fill" id="gpProgFill" style="width:78%"></div>
+          </div>
+        </div>
+
+        <div class="gp-prod-label">Recommended products</div>
+        <ul class="gp-prod-list" id="gpProdList">
+          <li><span class="gp-dot"></span>Almonds — 1 small handful daily</li>
+          <li><span class="gp-dot"></span>Sunflower Seeds — 2 tsp sprinkled</li>
+          <li><span class="gp-dot"></span>7-Blend Mix — daily all-rounder</li>
+        </ul>
+
+        <div class="gp-cta-row">
+          <a href="#products" class="btn-prim gp-shop-btn" id="gpShopBtn">Shop These ↓</a>
+          <span class="gp-note" id="gpNote">100% natural · Zero additives</span>
+        </div>
+
+      </div>
+
+      <!-- Right column — Why it works -->
+      <div class="gp-right">
+        <div class="gp-why-label">Why it works</div>
+        <div class="gp-why-grid" id="gpWhyGrid">
+          <div class="gp-why-item">
+            <span class="gp-why-icon">🌿</span>
+            <div class="gp-why-nm">Vitamin E</div>
+            <div class="gp-why-desc">Fights free radicals, protects skin cells from damage</div>
+          </div>
+          <div class="gp-why-item">
+            <span class="gp-why-icon">💧</span>
+            <div class="gp-why-nm">Zinc</div>
+            <div class="gp-why-desc">Regulates oil production, accelerates skin healing</div>
+          </div>
+          <div class="gp-why-item">
+            <span class="gp-why-icon">🔬</span>
+            <div class="gp-why-nm">Antioxidants</div>
+            <div class="gp-why-desc">Reduces oxidative stress and signs of aging</div>
+          </div>
+          <div class="gp-why-item">
+            <span class="gp-why-icon">✦</span>
+            <div class="gp-why-nm">Selenium</div>
+            <div class="gp-why-desc">Boosts collagen synthesis and skin elasticity</div>
+          </div>
+        </div>
+
+        <!-- Gradora badge -->
+        <div class="gp-brand-badge">
+          <span class="gbb-logo">Gradora<em>.eats</em></span>
+          <span class="gbb-tag">Pure Aura, Perfect Grade.</span>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+  <section class="prod-sec" id="products">
+    <div class="rv"><span class="sl">Gradora.eats Range</span></div>
+    <h2 class="st rv d1">Shop <em>Products</em></h2>
+    <div class="filter-row rv d2" id="filterRow">
+      <button class="fb on" data-cat="all">All Products</button>
+      <button class="fb" data-cat="nuts">Nuts &amp; Dry Fruits</button>
+      <button class="fb" data-cat="seeds">Seeds</button>
+      <button class="fb" data-cat="mixes">Mixes</button>
+    </div>
+    <div class="pgrid" id="pgrid"></div>
+  </section>
+
+  <section class="ben-sec" id="benefits">
+    <div class="rv"><span class="sl" style="color:var(--orange);">Why Eat Natural</span></div>
+    <h2 class="st rv d1" style="color:var(--text);">The <em style="color:var(--orange);">Benefits</em> of Going Pure
+    </h2>
+    <div class="bgrid">
+      <div class="bc rv d1"><span class="bc-icon">💪</span>
+        <div class="bc-t">High Protein</div>
+        <div class="bc-d">Almonds pack 21g protein per 100g. Pumpkin seeds hit 30g. Clean plant-based protein for every
+          daily goal.</div>
+      </div>
+      <div class="bc rv d2"><span class="bc-icon">🌾</span>
+        <div class="bc-t">Rich in Fiber</div>
+        <div class="bc-d">Flaxseed delivers 27g fiber per 100g — one of nature's densest sources. Keep your gut healthy,
+          naturally.</div>
+      </div>
+      <div class="bc rv d3"><span class="bc-icon">🫀</span>
+        <div class="bc-t">Heart Healthy</div>
+        <div class="bc-d">Omega-3 fatty acids in flaxseed and vitamin E in sunflower seeds actively support
+          cardiovascular wellness.</div>
+      </div>
+      <div class="bc rv d4"><span class="bc-icon">🧠</span>
+        <div class="bc-t">Brain Food</div>
+        <div class="bc-d">Pistachios and almonds are loaded with nutrients that fuel cognitive function and mental
+          clarity every day.</div>
+      </div>
+      <div class="bc rv d5"><span class="bc-icon">⚡</span>
+        <div class="bc-t">Sustained Energy</div>
+        <div class="bc-d">Complex fats and proteins in our nut blends deliver slow-burning, steady energy. No spike. No
+          crash.</div>
+      </div>
+      <div class="bc rv d6"><span class="bc-icon">🔬</span>
+        <div class="bc-t">Zero Additives</div>
+        <div class="bc-d">No artificial colors, no preservatives, no added oil — ever. What's on the label is exactly
+          what's in the jar.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cmp-sec">
+    <div class="rv"><span class="sl" style="color:var(--orange-l);justify-content:center;">Gradora vs The Rest</span>
+    </div>
+    <h2 class="st rv d1" style="text-align:center;">Why Gradora <em>Wins</em></h2>
+    <div class="cgrid">
+      <div class="cc us rv d1">
+        <div class="cc-hd"><span class="cc-nm">Gradora.eats</span><span class="cc-tg tg-us">Our Promise</span></div>
+        <div class="crow"><span class="cr-l">Additives</span><span class="cr-g">✓ Zero — None. Ever.</span></div>
+        <div class="crow"><span class="cr-l">Cashew Grade</span><span class="cr-g">✓ W240 Premium Grade</span></div>
+        <div class="crow"><span class="cr-l">Freshness</span><span class="cr-g">✓ Packed Directly at Source</span></div>
+        <div class="crow"><span class="cr-l">Labelling</span><span class="cr-g">✓ Full Nutrition Transparency</span>
+        </div>
+        <div class="crow"><span class="cr-l">Oil Added</span><span class="cr-g">✓ No Oil, No Salt Added</span></div>
+        <div class="crow"><span class="cr-l">Pistachio Origin</span><span class="cr-g">✓ Certified USA Pistachios</span>
+        </div>
+      </div>
+      <div class="cc rv d2">
+        <div class="cc-hd"><span class="cc-nm">Generic Brands</span><span class="cc-tg tg-tm">Typical Market</span>
+        </div>
+        <div class="crow"><span class="cr-l">Additives</span><span class="cr-b">✗ May Contain Preservatives</span></div>
+        <div class="crow"><span class="cr-l">Cashew Grade</span><span class="cr-b">✗ Mixed or Unlisted Grade</span>
+        </div>
+        <div class="crow"><span class="cr-l">Freshness</span><span class="cr-b">✗ Extended Supply Chains</span></div>
+        <div class="crow"><span class="cr-l">Labelling</span><span class="cr-b">✗ Incomplete Information</span></div>
+        <div class="crow"><span class="cr-l">Oil Added</span><span class="cr-b">✗ Often Oil-Coated or Salted</span>
+        </div>
+        <div class="crow"><span class="cr-l">Pistachio Origin</span><span class="cr-b">✗ Unknown or Unlisted
+            Origin</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="rec-sec" id="recipes">
+    <div class="rv"><span class="sl">Kitchen Ideas</span></div>
+    <h2 class="st rv d1">Quick <em>Recipes</em></h2>
+    <p class="rv d2" style="font-size:.78rem;color:rgba(242,235,217,.3);max-width:480px;margin-bottom:0;">Simple,
+      healthy ideas to get the most from your Gradora.eats products.</p>
+    <div class="rgrid">
+      <div class="rc rv d1" style="--ra:#1E2A10;--rb:#2E4018;">
+        <div class="rc-img">🥜</div>
+        <div class="rc-body">
+          <div class="rc-tag">Snack · 10 min</div>
+          <div class="rc-nm">Cashew Energy Balls</div>
+          <div class="rc-d">Blend W240 cashews with Medjool dates, roll in coconut flakes. Refrigerate 20 min. No bake.
+            No sugar added.</div>
+          <div class="rc-meta"><span>🕐 10 min</span><span>🌿 3 ingredients</span><span>💪 High Protein</span></div>
+        </div>
+      </div>
+      <div class="rc rv d2" style="--ra:#0A1F1C;--rb:#143028;">
+        <div class="rc-img">🥣</div>
+        <div class="rc-body">
+          <div class="rc-tag">Breakfast · 5 min</div>
+          <div class="rc-nm">Seed Mix Smoothie Bowl</div>
+          <div class="rc-d">Top your acai or banana smoothie bowl with Gradora Seed Mix. Instant crunch, protein and
+            omega-3 in every spoon.</div>
+          <div class="rc-meta"><span>🕐 5 min</span><span>🌾 High Fiber</span><span>🫀 Omega-3</span></div>
+        </div>
+      </div>
+      <div class="rc rv d3" style="--ra:#2E1A08;--rb:#402410;">
+        <div class="rc-img">🍯</div>
+        <div class="rc-body">
+          <div class="rc-tag">Breakfast · 2 min</div>
+          <div class="rc-nm">Almond Honey Toast</div>
+          <div class="rc-d">Roughly crush Gradora almonds. Mix with raw honey. Spread on sourdough. A breakfast that
+            actually tastes premium.</div>
+          <div class="rc-meta"><span>🕐 2 min</span><span>💪 21g Protein/100g</span><span>⚡ Energy</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="nl">
+    <p
+      style="font-size:.56rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(242,235,217,.45);margin-bottom:.4rem;">
+      Stay in the Loop</p>
+    <h2>Join the <em>Gradora Family</em></h2>
+    <p>New products, health tips and exclusive offers — straight to your inbox.</p>
+    <div class="nl-form"><input type="email" placeholder="Your email address"><button>Subscribe →</button></div>
+  </div>
+
+  <footer class="foot">
+    <div class="ft">
+      <div>
+        <div class="f-brand">Gradora</div>
+        <div class="f-sub">.eats</div>
+        <p class="f-desc">Premium 100% natural nuts, seeds and healthy snack mixes. Handpicked, graded, freshly packed —
+          for those who live well.</p>
+      </div>
+      <div class="fc">
+        <h5>Products</h5>
+        <ul>
+          <li><a href="#products">All Products</a></li>
+          <li><a href="https://www.amazon.in/s?k=gradora" target="_blank">Amazon India</a></li>
+          <!-- <li><a href="https://www.flipkart.com/search?q=gradora" target="_blank">Flipkart</a></li> -->
+        </ul>
+        <h5 style="margin-top:1.4rem;">Explore</h5>
+        <ul>
+          <li><a href="#benefits">Health Benefits</a></li>
+          <li><a href="#recipes">Recipes</a></li>
+        </ul>
+      </div>
+      <div class="fc">
+        <h5>Follow</h5>
+        <ul>
+          <li><a href="https://instagram.com/gradora.official" target="_blank">Instagram</a></li>
+          <li><a href="https://facebook.com/gradora" target="_blank">Facebook</a></li>
+          <li><a href="https://youtube.com/@gradora.official" target="_blank">YouTube</a></li>
+        </ul>
+        <h5 style="margin-top:1.4rem;">Company</h5>
+        <ul>
+          <li><a href="/">Gradora.in</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Returns</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="fb2">
+      <span>© 2025 Gradora · gradora.in · FSSAI Licensed</span>
+      <span>Made with ❤️ in India &nbsp;·&nbsp; <a href="/">gradora.in</a></span>
+    </div>
+  </footer>
+
+  <div class="c-overlay" id="cOverlay"></div>
+  <div class="c-drawer" id="cDrawer">
+    <div class="c-hd">
+      <h3>Your Cart</h3><button class="c-cls" id="cClose">×</button>
+    </div>
+    <div class="c-list" id="cList">
+      <div class="c-empty">Your cart is empty.<br><em style="font-size:.9rem;">Add some goodness above ↑</em></div>
+    </div>
+    <div class="c-ft">
+      <div class="c-tot"><span class="c-tot-l">Total</span><span class="c-tot-v" id="cTotal">₹0</span></div>
+      <p class="c-note">Fulfilled via Amazon &amp; Flipkart with secure pan-India delivery.</p>
+      <div class="c-cks">
+        <a class="amz-btn" href="#products">Buy on Amazon ↗</a>
+        <!-- <a class="c-flp" href="https://www.flipkart.com/search?q=gradora" target="_blank">Buy on Flipkart ↗</a> -->
+      </div>
+    </div>
+  </div>
+
+  <div id="pd-overlay">
+    <div class="pd-inner">
+      <button class="pd-back" id="pdBack">← Back to Products</button>
+      <div class="pd-grid">
+        <div class="pd-vis" id="pdVis"></div>
+        <div class="pd-info">
+          <div class="pd-cat" id="pdCat"></div>
+          <div class="pd-nm" id="pdNm"></div>
+          <div class="pd-desc" id="pdDesc"></div>
+          <div class="pd-nuts" id="pdNuts"></div>
+          <div class="pd-vsec">
+            <div class="pd-vlbl">Select Size</div>
+            <div class="pd-vrow" id="pdVrow"></div>
+          </div>
+          <div class="pd-pr" id="pdPr"></div>
+          <div class="pd-cta"><button class="pd-atc" id="pdAtc">Add to Cart</button></div>
+          <div class="pd-links" id="pdLinks"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../eats/js/eats.js">
+
+  </script>
+</body>
+
+</html>
