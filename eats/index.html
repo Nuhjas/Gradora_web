@@ -16,8 +16,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <link rel="manifest" href="../site.webmanifest" />
-
   <!-- ══ FAVICONS ════════════════════════════════════════════ -->
   <link rel="icon" type="image/png" sizes="32x32" href="../images/logo/favicon.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="../images/logo/favicon.png" />
@@ -25,7 +23,6 @@
   <link rel="icon" type="image/png" sizes="192x192" href="../images/logo/favicon.png" />
   <link rel="icon" type="image/png" sizes="512x512" href="../images/logo/favicon.png" />
   <link rel="shortcut icon" href="../images/logo/favicon.png">
-  <link rel="alternate" type="text/plain" href="llms.txt" title="LLM Context">
 
   <link
     href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500&family=MuseoModerno:wght@300;400;500;600&display=swap"
@@ -86,7 +83,7 @@
           </span>
         </div>
 
-        <div class="markers-block" data-scrollto="#goal">
+        <div class="markers-block" data-scrollto="#goalPanel">
           <span class="markers-block__text">goal</span>
           <span class="markers-block__line">
             <svg width="32" height="8" viewBox="0 0 32 8" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -211,58 +208,58 @@
       <div class="mist mist-a"></div>
 
       <div class="jar-wrap" id="jarWrap">
-
-        <img src="../images/products/7-blendM.png" alt="Gradora Premium Jar"
-          style="width: 100%; display: block; height: auto;">
+        <div class="jar-wrap" id="jarWrap">
+          <img src="../images/products/7-blendM.png" alt="Gradora Premium Jar"
+            style="width: 100%; display: block; height: auto;">
+        </div>
       </div>
-    </div>
 
-    <div class="mw l1" id="mw1">
-      <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id="g1" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#1E4A24" />
-            <stop offset="100%" stop-color="#193E20" />
-          </linearGradient>
-        </defs>
-        <path d="M-50,710 C100,690 280,672 460,684 C600,693 680,674 760,668
+      <div class="mw l1" id="mw1">
+        <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="g1" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#1E4A24" />
+              <stop offset="100%" stop-color="#193E20" />
+            </linearGradient>
+          </defs>
+          <path d="M-50,710 C100,690 280,672 460,684 C600,693 680,674 760,668
                  C840,662 920,670 1040,660 C1180,648 1320,668 1490,674 L1490,910 L-50,910Z" fill="url(#g1)" />
-      </svg>
-    </div>
+        </svg>
+      </div>
 
-    <div class="mw l0" id="mw0">
-      <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id="g0" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#0C1A13" />
-            <stop offset="100%" stop-color="#07120D" />
-          </linearGradient>
-        </defs>
-        <path d="M-50,800 C80,788 220,778 380,784 C520,789 600,778 700,774
+      <div class="mw l0" id="mw0">
+        <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="g0" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#0C1A13" />
+              <stop offset="100%" stop-color="#07120D" />
+            </linearGradient>
+          </defs>
+          <path d="M-50,800 C80,788 220,778 380,784 C520,789 600,778 700,774
                  C800,770 900,778 1060,772 C1220,766 1360,778 1490,782 L1490,910 L-50,910Z" fill="url(#g0)" />
-      </svg>
-    </div>
+        </svg>
+      </div>
 
-    <div class="hero-txt" id="heroTxt">
-      <p class="h-eyebrow">A Gradora Sub-Brand · India</p>
-      <h1 class="h-brand">Gradora<em>.eats</em></h1>
-      <p class="h-promise">Nature's Finest, Perfectly Graded.</p>
-      <!-- <div class="h-pills">
+      <div class="hero-txt" id="heroTxt">
+        <p class="h-eyebrow">A Gradora Sub-Brand · India</p>
+        <h1 class="h-brand">Gradora<em>.eats</em></h1>
+        <p class="h-promise">Nature's Finest, Perfectly Graded.</p>
+        <!-- <div class="h-pills">
           <span class="h-pill">🌿 100% Natural</span>
           <span class="h-pill">🚫 No Additives</span>
           <span class="h-pill">✋ Handpicked</span>
           <span class="h-pill">📦 Fresh Packed</span>
         </div> -->
-      <div class="h-acts">
-        <a href="#products" class="btn-prim">Shop Now</a>
-        <a href="#benefits" class="btn-ghost">Benefits ↓</a>
+        <div class="h-acts">
+          <a href="#products" class="btn-prim">Shop Now</a>
+          <a href="#benefits" class="btn-ghost">Benefits ↓</a>
+        </div>
+      </div>
+
+      <div class="sc">
+        <div class="sc-l"></div><span>Scroll</span>
       </div>
     </div>
-
-    <div class="sc">
-      <div class="sc-l"></div><span>Scroll</span>
-    </div>
-  </div>
   </div>
 
   <div class="ticker">
