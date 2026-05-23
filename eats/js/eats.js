@@ -1,14 +1,3 @@
-/* ═══════════════════════════════════════════════════════════════
-   GRADORA.EATS — MAIN PAGE SCRIPT
-   ═══════════════════════════════════════════════════════════════
-   Execution order matters — sections are intentionally sequenced:
-     A. Plugin registration
-     B. Initial gsap.set (before any timeline touches the DOM)
-     C. Scroll trigger + timeline
-     D. Idle levitation
-     E. Stars, transitions, shop, cursor, observers, nav
-   ═══════════════════════════════════════════════════════════════ */
-
 gsap.registerPlugin(ScrollTrigger);
 
 
