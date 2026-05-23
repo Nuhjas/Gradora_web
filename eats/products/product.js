@@ -132,7 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
     currentProd = PRODUCTS.find(p => p.id === pid);
 
     if (!currentProd) {
-        window.location.href = '../eats.html'; 
+        window.location.href = '../index.html#products'; 
         return;
     }
 
@@ -175,7 +175,7 @@ function renderProduct() {
     // Renders the Product
     container.innerHTML = `
         <div class="sp-visual" style="background: linear-gradient(135deg, ${v.imgA}, ${v.imgB});">
-            <a href="../eats.html#products" class="sp-back">← Back to Shop</a>
+            <a href="../index.html#products" class="sp-back">← Back to Shop</a>
             <img src="../${v.Image}" class="sp-product-image" id="spEm" alt="${p.name}">
         </div>
         
