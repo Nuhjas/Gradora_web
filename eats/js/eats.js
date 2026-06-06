@@ -922,6 +922,66 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 /* ═══════════════════════════════════════════════════════════
+   Q. LUXURY MOBILE MENU
+   ═══════════════════════════════════════════════════════════ */
+document.addEventListener('DOMContentLoaded', () => {
+    const menuBtn = document.getElementById('menuBtn');
+    const fsMenu  = document.getElementById('fsMenu');
+
+    if (!menuBtn || !fsMenu) return;
+
+    function openMenu() {
+        menuBtn.classList.add('active');
+        fsMenu.classList.add('open');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeMenu() {
+        menuBtn.classList.remove('active');
+        fsMenu.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+
+    menuBtn.addEventListener('click', () => {
+        if (fsMenu.classList.contains('open')) {
+            closeMenu();
+        } else {
+            openMenu();
+        }
+    });
+
+    // Close menu when clicking links
+    fsMenu.querySelectorAll('.fs-menu-link').forEach(link => {
+        link.addEventListener('click', () => {
+            closeMenu();
+        });
+    });
+});
+
+
+/* ═══════════════════════════════════════════════════════════
+   R. THEME TOGGLE (LIGHT / DARK)
+   ═══════════════════════════════════════════════════════════ */
+document.addEventListener('DOMContentLoaded', () => {
+    const themeToggle = document.getElementById('themeToggle');
+    if (!themeToggle) return;
+
+    const activeTheme = localStorage.getItem('g_theme') || 'dark';
+    if (activeTheme === 'light') {
+        document.body.classList.add('light-theme');
+    } else {
+        document.body.classList.remove('light-theme');
+    }
+
+    themeToggle.addEventListener('click', () => {
+        document.body.classList.toggle('light-theme');
+        const currentTheme = document.body.classList.contains('light-theme') ? 'light' : 'dark';
+        localStorage.setItem('g_theme', currentTheme);
+    });
+});
+
+
+/* ═══════════════════════════════════════════════════════════
    INIT
    ═══════════════════════════════════════════════════════════ */
 render();
