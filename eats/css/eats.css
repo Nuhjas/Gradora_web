@@ -451,16 +451,16 @@ body {
     }
 }
 
-/* Hero right-side text */
+/* Hero centered text (without jar) */
 .hero-txt {
     position: absolute;
     top: 50%;
-    right: 10%;
-    transform: translateY(-50%);
-    text-align: right;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
     z-index: 20;
-    width: 42%;
-    max-width: 500px;
+    width: 90%;
+    max-width: 800px;
 }
 
 .h-eyebrow {
@@ -502,7 +502,7 @@ body {
 .h-pills {
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-end;
+    justify-content: center;
     gap: .4rem;
     margin-bottom: 2.4rem;
 }
@@ -520,7 +520,7 @@ body {
 .h-acts {
     display: flex;
     gap: .8rem;
-    justify-content: flex-end;
+    justify-content: center;
     flex-wrap: wrap;
 }
 
@@ -2146,11 +2146,6 @@ section {
     .pd-inner {
         padding: 6rem 2.5rem 3rem;
     }
-
-    .hero-txt {
-        width: 50%;
-        right: 4%;
-    }
 }
 
 @media(max-width:768px) {
@@ -2183,21 +2178,9 @@ section {
     .foot {
         padding: 3rem 1.5rem 1.5rem;
     }
-
     .c-drawer {
         width: 100%;
         max-width: 400px;
-    }
-
-    .hero-txt {
-        width: 55%;
-        right: 3%;
-        top: 55%;
-    }
-
-    .jar-wrap {
-        width: 130px;
-        left: 5%;
     }
 
     .pd-inner {
@@ -3862,7 +3845,8 @@ body.transitioning { overflow: hidden; }
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 6rem 1rem 3rem;
+    padding: 7rem 1rem 4rem;
+    box-sizing: border-box;
 }
 
 .fs-menu-header {
@@ -3894,7 +3878,7 @@ body.transitioning { overflow: hidden; }
     font-weight: 300;
     color: var(--cream);
     text-decoration: none;
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 1.5rem;
@@ -4256,14 +4240,14 @@ body.transitioning { overflow: hidden; }
    GRADORA.EATS — PREMIUM LIGHT COLOR THEME OVERRIDES
    ═══════════════════════════════════════════════════════════════ */
 
-/* ── Theme Switch Segmented Control ── */
+/* ── Theme Switch Segmented Control (Sleek Sizing) ── */
 .theme-switch {
     background: rgba(255, 255, 255, 0.04);
     border: 0.5px solid rgba(242, 235, 217, 0.12);
     border-radius: 30px;
     padding: 2px;
-    width: 110px;
-    height: 32px;
+    width: 90px;
+    height: 26px;
     cursor: none;
     display: flex;
     align-items: center;
@@ -4282,10 +4266,10 @@ body.transitioning { overflow: hidden; }
     position: absolute;
     top: 2px;
     left: 2px;
-    width: 51px;
-    height: 26px;
+    width: 41px;
+    height: 20px;
     background: var(--orange-l);
-    border-radius: 26px;
+    border-radius: 20px;
     transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1);
     z-index: 1;
 }
@@ -4294,9 +4278,9 @@ body.transitioning { overflow: hidden; }
     position: relative;
     flex: 1;
     text-align: center;
-    font-size: 0.55rem;
+    font-size: 0.5rem;
     font-weight: 500;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.05em;
     text-transform: uppercase;
     color: rgba(242, 235, 217, 0.45);
     z-index: 2;
@@ -4339,7 +4323,7 @@ body.light-theme .theme-switch:hover {
 }
 
 body.light-theme .theme-switch-indicator {
-    transform: translateX(53px);
+    transform: translateX(45px);
     background: #1A2E1C !important;
 }
 
@@ -4349,6 +4333,79 @@ body.light-theme .dark-opt {
 
 body.light-theme .light-opt {
     color: #F9F7F2 !important;
+}
+
+/* ── Fullscreen Menu Controls Wrapper ── */
+.fs-menu-controls {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    z-index: 100002;
+}
+
+/* ── Fullscreen Menu Close Button ── */
+.fs-menu-close {
+    background: none;
+    border: none;
+    font-size: 2.5rem;
+    color: rgba(242, 235, 217, 0.4);
+    cursor: none;
+    transition: color 0.3s, transform 0.3s;
+    outline: none;
+    padding: 0.5rem;
+    line-height: 1;
+}
+
+.fs-menu-close:hover {
+    color: var(--orange-l);
+    transform: rotate(90deg);
+}
+
+/* Responsive Theme Switch Overrides */
+@media (max-width: 768px) {
+    .nav-right .theme-switch {
+        display: none !important; /* Hide header toggle on mobile */
+    }
+}
+
+/* ── Fullscreen Menu Light Theme Overrides ── */
+body.light-theme .fs-menu-bg {
+    background: radial-gradient(circle at center, #F9F7F2 0%, #EFECE5 100%) !important;
+}
+
+body.light-theme .fs-menu-logo-g {
+    color: #1A2E1C !important;
+}
+
+body.light-theme .fs-menu-close {
+    color: rgba(26, 46, 28, 0.4) !important;
+}
+
+body.light-theme .fs-menu-close:hover {
+    color: var(--orange) !important;
+}
+
+body.light-theme .fs-menu-link {
+    color: rgba(26, 46, 28, 0.45) !important;
+}
+
+body.light-theme .fs-menu-link:hover {
+    color: #1A2E1C !important;
+}
+
+body.light-theme .fs-menu-link::before {
+    color: var(--orange) !important;
+}
+
+body.light-theme .fs-menu-link span::after {
+    background: #1A2E1C !important;
+}
+
+body.light-theme .fs-menu-footer p {
+    color: rgba(26, 46, 28, 0.35) !important;
 }
 
 /* ── B. BLURRED STUCK NAVIGATION BAR ── */

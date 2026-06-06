@@ -5,7 +5,7 @@ gsap.registerPlugin(ScrollTrigger);
    A. INITIAL STATES — set before any animation runs
    ═══════════════════════════════════════════════════════════ */
 gsap.set(['#mw6','#mw5','#mw4','#mw3','#mw2','#mw1','#mw0'], { opacity: 0, y: 20 });
-gsap.set('#jarWrap',  { opacity: 0, y: 180, scale: 0.75, rotation: -40, force3D: true });
+if (document.getElementById('jarWrap')) gsap.set('#jarWrap',  { opacity: 0, y: 180, scale: 0.75, rotation: -40, force3D: true });
 gsap.set('#heroTxt',  { opacity: 0, y: 30 });
 gsap.set('#stars-c',  { opacity: 0 });
 
@@ -44,16 +44,18 @@ gsap.fromTo('#heroTxt',
 );
 
 // Jar scroll pop-out with parallax depth on children
-const scrollTl = gsap.timeline({ scrollTrigger: trigger });
-scrollTl
-    .to('#jarWrap', {
-        y: '-25%', scale: 1.1, rotation: 6,
-        ease: 'power2.inOut',
-    }, 0)
-    .to('#jarWrap > *', {
-        rotation: -3,   // counter-rotate inner = parallax depth illusion
-        ease: 'power2.inOut',
-    }, 0);
+if (document.getElementById('jarWrap')) {
+    const scrollTl = gsap.timeline({ scrollTrigger: trigger });
+    scrollTl
+        .to('#jarWrap', {
+            y: '-25%', scale: 1.1, rotation: 6,
+            ease: 'power2.inOut',
+        }, 0)
+        .to('#jarWrap > *', {
+            rotation: -3,   // counter-rotate inner = parallax depth illusion
+            ease: 'power2.inOut',
+        }, 0);
+}
 
 
 /* ═══════════════════════════════════════════════════════════
@@ -67,20 +69,24 @@ tl
     // Background mountains stagger in (array = clean, no repeated lines)
     .to(['#mw6','#mw5','#mw4','#mw3','#mw2'], {
         opacity: 1, y: 0, duration: 1.8, stagger: 0.12,
-    }, 0.1)
+    }, 0.1);
 
-    // Jar bounces in with elastic energy
-    .to('#jarWrap', {
-        opacity: 1, y: 0, scale: 1,
-        rotation: -14,                          // elastic overshoots around this
-        duration: 2.4, ease: 'elastic.out(1.1, 0.45)',
-    }, 0.5)
+if (document.getElementById('jarWrap')) {
+    tl
+        // Jar bounces in with elastic energy
+        .to('#jarWrap', {
+            opacity: 1, y: 0, scale: 1,
+            rotation: -14,                          // elastic overshoots around this
+            duration: 2.4, ease: 'elastic.out(1.1, 0.45)',
+        }, 0.5)
 
-    // Micro-correct: resolves the elastic wiggle into a deliberate lean
-    .to('#jarWrap', {
-        rotation: -8, duration: 0.9, ease: 'power2.inOut',
-    }, 2.3)
+        // Micro-correct: resolves the elastic wiggle into a deliberate lean
+        .to('#jarWrap', {
+            rotation: -8, duration: 0.9, ease: 'power2.inOut',
+        }, 2.3);
+}
 
+tl
     .to(['#mw1','#mw0'], {
         opacity: 1, y: 0, duration: 1.3, stagger: 0.1,
     }, 0.9)
@@ -99,29 +105,31 @@ tl
    ═══════════════════════════════════════════════════════════ */
 const IDLE_DELAY = 3.2; // after entry animation fully settles
 
-// Primary Y breath
-gsap.fromTo('#jarWrap',
-    { y: 0 },
-    { y: -18, duration: 2.8, ease: 'sine.inOut', yoyo: true, repeat: -1, delay: IDLE_DELAY }
-);
+if (document.getElementById('jarWrap')) {
+    // Primary Y breath
+    gsap.fromTo('#jarWrap',
+        { y: 0 },
+        { y: -18, duration: 2.8, ease: 'sine.inOut', yoyo: true, repeat: -1, delay: IDLE_DELAY }
+    );
 
-// Slow X drift — barely perceptible, adds life
-gsap.fromTo('#jarWrap',
-    { x: 0 },
-    { x: 7, duration: 3.9, ease: 'sine.inOut', yoyo: true, repeat: -1, delay: IDLE_DELAY }
-);
+    // Slow X drift — barely perceptible, adds life
+    gsap.fromTo('#jarWrap',
+        { x: 0 },
+        { x: 7, duration: 3.9, ease: 'sine.inOut', yoyo: true, repeat: -1, delay: IDLE_DELAY }
+    );
 
-// Rotation sway — fromTo makes resting angle explicit (-8° from entry)
-gsap.fromTo('#jarWrap',
-    { rotation: -8 },
-    { rotation: -13, duration: 3.3, ease: 'sine.inOut', yoyo: true, repeat: -1, delay: IDLE_DELAY }
-);
+    // Rotation sway — fromTo makes resting angle explicit (-8° from entry)
+    gsap.fromTo('#jarWrap',
+        { rotation: -8 },
+        { rotation: -13, duration: 3.3, ease: 'sine.inOut', yoyo: true, repeat: -1, delay: IDLE_DELAY }
+    );
 
-// Scale breathe — like lungs
-gsap.fromTo('#jarWrap',
-    { scale: 1 },
-    { scale: 1.028, duration: 4.2, ease: 'sine.inOut', yoyo: true, repeat: -1, delay: IDLE_DELAY }
-);
+    // Scale breathe — like lungs
+    gsap.fromTo('#jarWrap',
+        { scale: 1 },
+        { scale: 1.028, duration: 4.2, ease: 'sine.inOut', yoyo: true, repeat: -1, delay: IDLE_DELAY }
+    );
+}
 
 
 /* ═══════════════════════════════════════════════════════════
@@ -225,7 +233,7 @@ function cycleHeroImage() {
 }
 
 // First swap fires after: entry settles (3.2s) + 1 full float (2.8s) + buffer (1.0s)
-gsap.delayedCall(IDLE_DELAY + 2.8 + 1.0, cycleHeroImage);
+if (document.getElementById('jarWrap')) gsap.delayedCall(IDLE_DELAY + 2.8 + 1.0, cycleHeroImage);
 
 
 /* ═══════════════════════════════════════════════════════════
@@ -927,6 +935,7 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('DOMContentLoaded', () => {
     const menuBtn = document.getElementById('menuBtn');
     const fsMenu  = document.getElementById('fsMenu');
+    const fsMenuClose = document.getElementById('fsMenuClose');
 
     if (!menuBtn || !fsMenu) return;
 
@@ -950,6 +959,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    if (fsMenuClose) {
+        fsMenuClose.addEventListener('click', closeMenu);
+    }
+
     // Close menu when clicking links
     fsMenu.querySelectorAll('.fs-menu-link').forEach(link => {
         link.addEventListener('click', () => {
@@ -963,9 +976,8 @@ document.addEventListener('DOMContentLoaded', () => {
    R. THEME TOGGLE (LIGHT / DARK)
    ═══════════════════════════════════════════════════════════ */
 document.addEventListener('DOMContentLoaded', () => {
-    const themeToggle = document.getElementById('themeToggle');
-    if (!themeToggle) return;
-
+    const themeSwitches = document.querySelectorAll('.theme-switch');
+    
     const activeTheme = localStorage.getItem('g_theme') || 'dark';
     if (activeTheme === 'light') {
         document.body.classList.add('light-theme');
@@ -973,10 +985,12 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.classList.remove('light-theme');
     }
 
-    themeToggle.addEventListener('click', () => {
-        document.body.classList.toggle('light-theme');
-        const currentTheme = document.body.classList.contains('light-theme') ? 'light' : 'dark';
-        localStorage.setItem('g_theme', currentTheme);
+    themeSwitches.forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.body.classList.toggle('light-theme');
+            const currentTheme = document.body.classList.contains('light-theme') ? 'light' : 'dark';
+            localStorage.setItem('g_theme', currentTheme);
+        });
     });
 });
 
