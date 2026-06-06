@@ -483,6 +483,10 @@
     <ul class="nav-link-about">
       <li><a href="./about/about.html" onclick="window.location.href='./about/about.html'">About Us</a></li>
     </ul>
+    <button class="menu-btn" id="menuBtn" aria-label="Menu">
+      <span class="menu-icon-line"></span>
+      <span class="menu-icon-line"></span>
+    </button>
     <!-- <button class="nav-btn" onclick="document.getElementById('eats').scrollIntoView({behavior:'smooth'})">Shop Now
       ↗</button> -->
   </nav>
@@ -967,6 +971,42 @@
         id="character-leg-r">
     </div>
   </div> -->
+
+  <!-- Fullscreen Luxury Menu Overlay for Root Brand Page -->
+  <div class="fs-menu" id="fsMenu">
+    <div class="fs-menu-bg"></div>
+    <button class="fs-menu-close" id="fsMenuClose" aria-label="Close Menu">×</button>
+    <div class="fs-menu-inner">
+      <div class="fs-menu-header">
+        <span class="fs-menu-logo">Gradora</span>
+      </div>
+      <nav class="fs-menu-nav">
+        <a href="#mission" class="fs-menu-link">
+          <div class="menu-no">01</div>
+          <div class="menu-text">Vision</div>
+        </a>
+        <a href="#universe" class="fs-menu-link">
+          <div class="menu-no">02</div>
+          <div class="menu-text">Universe</div>
+        </a>
+        <a href="./eats/index.html" class="fs-menu-link">
+          <div class="menu-no">03</div>
+          <div class="menu-text">Gradora.eats</div>
+        </a>
+        <a href="./about/about.html" class="fs-menu-link">
+          <div class="menu-no">04</div>
+          <div class="menu-text">About Us</div>
+        </a>
+        <a href="#contact" class="fs-menu-link">
+          <div class="menu-no">05</div>
+          <div class="menu-text">Contact</div>
+        </a>
+      </nav>
+      <div class="fs-menu-footer">
+        <p>© 2025 Gradora · Pure Aura, Perfect Grade.</p>
+      </div>
+    </div>
+  </div>
 
   <script src="js/script.js"></script>
 </body>

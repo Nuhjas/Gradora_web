@@ -497,3 +497,43 @@ document.querySelectorAll('.sf-link').forEach(link => {
 //   // Apply bounce to the entire assembled character wrapper
 //   characterWrapper.style.transform = `translateY(-${bounce}px)`;
 // });
+
+// Fullscreen Menu Toggle
+document.addEventListener('DOMContentLoaded', () => {
+  const menuBtn = document.getElementById('menuBtn');
+  const fsMenu = document.getElementById('fsMenu');
+  const fsMenuClose = document.getElementById('fsMenuClose');
+
+  if (!menuBtn || !fsMenu) return;
+
+  function openMenu() {
+    menuBtn.classList.add('active');
+    fsMenu.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMenu() {
+    menuBtn.classList.remove('active');
+    fsMenu.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  menuBtn.addEventListener('click', () => {
+    if (fsMenu.classList.contains('open')) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
+  });
+
+  if (fsMenuClose) {
+    fsMenuClose.addEventListener('click', closeMenu);
+  }
+
+  // Close menu when clicking links
+  fsMenu.querySelectorAll('.fs-menu-link').forEach(link => {
+    link.addEventListener('click', () => {
+      closeMenu();
+    });
+  });
+});
