@@ -52,12 +52,17 @@
 
 
   <nav class="nav" id="mainNav">
-    <a href="../index.html" class="nav-back">← gradora.in</a>
+    <a href="../index.html" class="nav-back">← <span class="nav-back-text">gradora.in</span></a>
     <a href="#" class="nav-logo"><span class="nl-g">Gradora</span><span class="nl-e">.eats</span></a>
     <div class="nav-right">
       <a href="#products" class="nav-item"><span class="nav-text">Products</span></a>
       <a href="#benefits" class="nav-item"><span class="nav-text">Benefits</span></a>
       <a href="#recipes" class="nav-item"><span class="nav-text">Recipes</span></a>
+      <button class="theme-switch" id="themeToggle" aria-label="Toggle Theme">
+        <span class="theme-switch-indicator"></span>
+        <span class="theme-switch-opt dark-opt">Dark</span>
+        <span class="theme-switch-opt light-opt">Light</span>
+      </button>
       <button class="cart-btn" id="cartBtn" aria-label="Cart">
         <svg viewBox="0 0 24 24">
           <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" />
@@ -65,6 +70,10 @@
           <path d="M16 10a4 4 0 01-8 0" />
         </svg>
         <span class="cart-badge" id="cartBadge">0</span>
+      </button>
+      <button class="menu-btn" id="menuBtn" aria-label="Menu">
+        <span class="menu-icon-line"></span>
+        <span class="menu-icon-line"></span>
       </button>
     </div>
   </nav>
@@ -607,6 +616,26 @@
       <div class="c-cks">
         <!-- <a class="amz-btn" href="#products">Buy on Amazon ↗</a> -->
         <!-- <a class="c-flp" href="https://www.flipkart.com/search?q=gradora" target="_blank">Buy on Flipkart ↗</a> -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Fullscreen Luxury Menu Overlay -->
+  <div class="fs-menu" id="fsMenu">
+    <div class="fs-menu-bg"></div>
+    <div class="fs-menu-inner">
+      <div class="fs-menu-header">
+        <span class="fs-menu-logo-g">Gradora</span><span class="fs-menu-logo-e">.eats</span>
+      </div>
+      <nav class="fs-menu-nav">
+        <a href="#products" class="fs-menu-link" data-num="01"><span>Products</span></a>
+        <a href="#benefits" class="fs-menu-link" data-num="02"><span>Benefits</span></a>
+        <a href="../index.html" class="fs-menu-link" data-num="03"><span>Our Story</span></a>
+        <a href="https://www.amazon.in/s?k=gradora" target="_blank" class="fs-menu-link" data-num="04"><span>Amazon</span></a>
+        <a href="https://www.flipkart.com/search?q=gradora" target="_blank" class="fs-menu-link" data-num="05"><span>Flipkart</span></a>
+      </nav>
+      <div class="fs-menu-footer">
+        <p>© 2025 Gradora · Pure Aura, Perfect Grade.</p>
       </div>
     </div>
   </div>
