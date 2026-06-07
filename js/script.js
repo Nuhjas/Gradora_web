@@ -536,4 +536,67 @@ document.addEventListener('DOMContentLoaded', () => {
       closeMenu();
     });
   });
+
+  // Why Choose Us scroll indicator dots and swipe arrows
+  const whyGrid = document.querySelector('.why-grid');
+  const whyCards = document.querySelectorAll('.why-grid .why-card');
+  const whyDots = document.querySelectorAll('.why-dot');
+  const leftArrow = document.querySelector('.why-swipe-arrow.left');
+  const rightArrow = document.querySelector('.why-swipe-arrow.right');
+
+  if (whyGrid && whyCards.length > 0 && whyDots.length > 0) {
+    // 1. IntersectionObserver for tracking the active card index
+    const observerOptions = {
+      root: whyGrid,
+      threshold: 0.5,
+      rootMargin: '0px'
+    };
+
+    const cardObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const activeIndex = Array.from(whyCards).indexOf(entry.target);
+          if (activeIndex !== -1) {
+            // Update active dot
+            whyDots.forEach((dot, i) => {
+              dot.classList.toggle('active', i === activeIndex);
+            });
+
+            // Update arrow opacities
+            if (leftArrow) leftArrow.style.opacity = activeIndex > 0 ? '1' : '0';
+            if (rightArrow) rightArrow.style.opacity = activeIndex < whyCards.length - 1 ? '1' : '0';
+          }
+        }
+      });
+    }, observerOptions);
+
+    whyCards.forEach(card => cardObserver.observe(card));
+
+    // 2. Click actions for left and right arrows to scroll the container
+    if (leftArrow) {
+      leftArrow.addEventListener('click', () => {
+        const firstCard = whyGrid.querySelector('.why-card');
+        if (!firstCard) return;
+        const gap = parseFloat(window.getComputedStyle(whyGrid).gap) || 0;
+        const cardWidth = firstCard.getBoundingClientRect().width + gap;
+        whyGrid.scrollBy({
+          left: -cardWidth,
+          behavior: 'smooth'
+        });
+      });
+    }
+
+    if (rightArrow) {
+      rightArrow.addEventListener('click', () => {
+        const firstCard = whyGrid.querySelector('.why-card');
+        if (!firstCard) return;
+        const gap = parseFloat(window.getComputedStyle(whyGrid).gap) || 0;
+        const cardWidth = firstCard.getBoundingClientRect().width + gap;
+        whyGrid.scrollBy({
+          left: cardWidth,
+          behavior: 'smooth'
+        });
+      });
+    }
+  }
 });

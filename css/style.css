@@ -906,6 +906,7 @@ section{padding:6rem 5rem;}
   font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;font-weight:500;color:var(--dark);margin-bottom:.4rem;
 }
 .why-card p{font-size:.7rem;color:var(--muted);line-height:1.8;}
+.why-scroll-indicator{display:none;}
 
 
 
@@ -996,16 +997,100 @@ footer{
 }
 @media(max-width:768px){
   nav{padding:1rem 1.5rem;}
+
   .nav-links,.nav-btn{display:none;}
+
   /* .hero{grid-template-columns:1fr;padding:6rem 1.5rem 3rem;text-align:center;} */
   /* .hero-sub{margin:0 auto 2rem;} */
   /* .hero-badges{justify-content:center;} */
   /* .hero-actions{justify-content:center;} */
   /* .hero-right{display:none;} */
   section{padding:4rem 1.5rem;}
+
   .eats-grid{grid-template-columns:repeat(2,1fr);}
+
   /* .brand-story{grid-template-columns:1fr;} */
-  .why-grid{grid-template-columns:repeat(2,1fr);}
+  /* Carousel scroll indicator below cards on mobile */
+  
+  .why-scroll-indicator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+    width: 100%;
+  }
+  .why-swipe-arrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.2rem;
+    font-size: 0.52rem;
+    color: var(--orange-l);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    transition: opacity 0.3s ease;
+  }
+  .why-swipe-arrow.left {
+    opacity: 0;
+    animation: pulseLeftArrow 1.5s infinite ease-in-out;
+  }
+  .why-swipe-arrow.right {
+    opacity: 1;
+    animation: pulseRightArrow 1.5s infinite ease-in-out;
+  }
+  @keyframes pulseLeftArrow {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(-4px); }
+  }
+  @keyframes pulseRightArrow {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(4px); }
+  }
+
+  .why-dots {
+    display: flex;
+    gap: 0.45rem;
+    align-items: center;
+  }
+  .why-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--cream-dd);
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .why-dot.active {
+    width: 14px;
+    border-radius: 4px;
+    background: var(--red);
+  }
+
+  .why-grid {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    gap: 1.2rem;
+    background: transparent;
+    border: none;
+    margin-left: -1.5rem;
+    margin-right: -1.5rem;
+    padding: 0.5rem 1.5rem 1.5rem 1.5rem;
+    scrollbar-width: none;
+  }
+  .why-grid::-webkit-scrollbar {
+    display: none;
+  }
+  .why-card {
+    flex: 0 0 78vw; /* Make next card peek */
+    max-width: 280px;
+    scroll-snap-align: start;
+    border: 1px solid var(--cream-dd);
+    border-radius: 8px;
+    padding: 2rem 1.5rem;
+    box-shadow: 0 4px 12px rgba(61,43,26,0.02);
+  }
   .eats-banner{padding:3rem 1.5rem;}
   .eats-products{padding:3rem 1.5rem;}
   .eats-banner-inner{grid-template-columns:1fr;}
@@ -1018,11 +1103,38 @@ footer{
   footer{padding:3rem 1.5rem 2rem;}
   /* .story-right{padding:3rem 2rem;} */
   /* .story-left{padding:3rem 2rem;} */
+
+  /* Gradora Universe horizontal scroll on mobile */
+  .brands-grid {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    gap: 1.2rem;
+    background: transparent;
+    border: none;
+    margin-left: -1.5rem;
+    margin-right: -1.5rem;
+    padding: 0.5rem 1.5rem 1.5rem 1.5rem;
+    scrollbar-width: none;
+  }
+  .brands-grid::-webkit-scrollbar {
+    display: none;
+  }
+  .brand-card {
+    flex: 0 0 82vw;
+    max-width: 320px;
+    scroll-snap-align: start;
+    border: 1px solid rgba(242, 235, 217, 0.08);
+    border-radius: 8px;
+    padding: 3rem 2rem;
+  }
 }
 @media(max-width:600px){
   /* .product-grid{grid-template-columns:1fr;} */
   .eats-grid{grid-template-columns:1fr;}
-  .why-grid{grid-template-columns:1fr;}
+  /* .why-grid{grid-template-columns:1fr;} */
   .promise-grid{grid-template-columns:1fr;}
   /* .footer-top{grid-template-columns:1fr;} */
 }
