@@ -30,7 +30,7 @@
     <canvas id="stars-c"></canvas>
 
     <nav class="nav-p" id="mainNav">
-        <a href="../index.html" class="nav-back-p">← <span class="nl-g">Gradora</span><span
+        <a href="../index.html" class="nav-back-p"><span class="nav-back-arrow-p">←</span> <span class="nl-g">Gradora</span><span
                 class="nl-e">.eats</span></a>
         <div class="nav-right">
             <button class="theme-switch" id="themeToggle" aria-label="Toggle Theme">
@@ -46,11 +46,43 @@
                 </svg>
                 <span class="cart-badge" id="cartBadge">0</span>
             </button>
+            <button class="menu-btn" id="menuBtn" aria-label="Menu">
+                <span class="menu-icon-line"></span>
+                <span class="menu-icon-line"></span>
+            </button>
         </div>
     </nav>
 
     <main id="sp-container" class="sp-container">
     </main>
+
+    <!-- Fullscreen Luxury Menu Overlay -->
+    <div class="fs-menu" id="fsMenu">
+        <div class="fs-menu-bg"></div>
+        <div class="fs-menu-controls">
+            <button class="theme-switch" id="themeToggleMobile" aria-label="Toggle Theme">
+                <span class="theme-switch-indicator"></span>
+                <span class="theme-switch-opt dark-opt">Dark</span>
+                <span class="theme-switch-opt light-opt">Light</span>
+            </button>
+            <button class="fs-menu-close" id="fsMenuClose" aria-label="Close Menu">×</button>
+        </div>
+        <div class="fs-menu-inner">
+            <div class="fs-menu-header">
+                <span class="fs-menu-logo-g">Gradora</span><span class="fs-menu-logo-e">.eats</span>
+            </div>
+            <nav class="fs-menu-nav">
+                <a href="../index.html#products" class="fs-menu-link" data-num="01"><span>Products</span></a>
+                <a href="../index.html#benefits" class="fs-menu-link" data-num="02"><span>Benefits</span></a>
+                <a href="../../index.html" class="fs-menu-link" data-num="03"><span>Our Story</span></a>
+                <a href="https://www.amazon.in/s?k=gradora" target="_blank" class="fs-menu-link" data-num="04"><span>Amazon</span></a>
+                <a href="https://www.flipkart.com/search?q=gradora" target="_blank" class="fs-menu-link" data-num="05"><span>Flipkart</span></a>
+            </nav>
+            <div class="fs-menu-footer">
+                <p>© 2025 Gradora · Pure Aura, Perfect Grade.</p>
+            </div>
+        </div>
+    </div>
 
     <div class="c-overlay" id="cOverlay"></div>
     <div class="c-drawer" id="cDrawer">

@@ -2,7 +2,20 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
 }
+
+/* Touch and Focus Resets for Interactive Elements */
+a, button, select, input, [role="button"], .vb, .fb, .sp-rec-card, .amz-btn, .qb, .theme-switch, .cart-btn {
+    -webkit-tap-highlight-color: transparent !important;
+    outline: none !important;
+}
+
+button, select, input[type="submit"], input[type="button"], [role="button"], .vb, .fb, .amz-btn, .qb, .theme-switch, .cart-btn {
+    user-select: none;
+    -webkit-user-select: none;
+}
+
 
 :root {
     --red: #C8201A;
@@ -103,6 +116,16 @@ body {
     padding: .8rem 3.5rem;
 }
 
+.nav-back-arrow {
+    font-size: 1.1rem;
+    color: #E07240;
+    margin-right: 0.2rem;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 1;
+    transition: transform 0.2s ease;
+}
+
 .nav-back {
     font-size: .56rem;
     letter-spacing: .2em;
@@ -117,6 +140,10 @@ body {
 
 .nav-back:hover {
     color: var(--orange-l);
+}
+
+.nav-back:hover .nav-back-arrow {
+    transform: translateX(-3px);
 }
 
 .nav-logo {
@@ -216,7 +243,7 @@ body {
     gap: .5rem; 
     cursor: none; /* Retains your custom dot cursor */
     pointer-events: auto; 
-    opacity: 0.4; 
+    opacity: .6; 
     transition: opacity 0.3s cubic-bezier(0.625, 0.05, 0, 1);
 }
 
@@ -231,7 +258,7 @@ body {
     text-transform: uppercase;
     font-family: 'DM Sans', sans-serif;
     font-weight: 500;
-    color: rgba(242, 235, 217, .5);
+    color: rgba(241, 235, 235, 0.966);
     transition: color 0.3s cubic-bezier(0.625, 0.05, 0, 1);
 }
 
@@ -242,7 +269,7 @@ body {
     justify-content: center;
     width: 20px;
     height: 8px;
-    color: rgba(242, 235, 217, .3); /* Idle line color */
+    color: rgba(233, 232, 226, 0.89); /* Idle line color */
     transition: color 0.6s cubic-bezier(0.625, 0.05, 0, 1);
 }
 
@@ -3331,20 +3358,25 @@ body.transitioning { overflow: hidden; }
 
 /* ── Premium Nutrition Button (Forced Visibility) ── */
 .sp-nutri-btn {
-    background: rgba(255, 255, 255, 0.06) !important;
-    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    background: rgba(224, 114, 64, 0.15) !important;
+    border: 2px solid #E07240 !important;
     color: #F2EBD9 !important;
-    padding: 0.8rem 1.4rem !important;
+    padding: 0.8rem 1.6rem !important;
     border-radius: 14px !important;
     font-size: 0.95rem !important;
-    font-weight: 500 !important;
+    font-weight: 600 !important;
     display: inline-flex !important;
     align-items: center !important;
     gap: 12px !important;
-    cursor: none !important;
+    cursor: pointer !important;
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
     position: relative !important;
     z-index: 10 !important;
+    letter-spacing: 0.02em !important;
+    user-select: none !important;
+    -webkit-user-select: none !important;
+    -webkit-tap-highlight-color: transparent !important;
+    outline: none !important;
 }
 
 .sp-n-icon {
@@ -4205,6 +4237,32 @@ body.transitioning { overflow: hidden; }
     .sp-m-lbl {
         font-size: 0.55rem !important;
     }
+
+    /* Nutrition button — visible + tightly positioned between macros line and variants */
+    .sp-nutri-btn {
+        opacity: 1 !important;
+        visibility: visible !important;
+        display: inline-flex !important;
+        background: rgba(224, 114, 64, 0.15) !important;
+        border: 2px solid #E07240 !important;
+        color: #F2EBD9 !important;
+        font-size: 0.85rem !important;
+        padding: 0.6rem 1.2rem !important;
+        width: fit-content !important;
+        margin-top: 1rem !important;
+        margin-bottom: 3.2rem !important;
+        user-select: none !important;
+        -webkit-user-select: none !important;
+        -webkit-tap-highlight-color: transparent !important;
+        outline: none !important;
+    }
+
+    .sp-variants {
+        display: flex !important;
+        gap: 0.75rem !important;
+        margin-top: 0.5rem !important;
+        margin-bottom: 1.2rem !important;
+    }
 }
 
 /* ── H. NEWSLETTER MOBILE REFINEMENTS ── */
@@ -4313,7 +4371,7 @@ body.light-theme {
 
 /* Light mode specific toggle btn style */
 body.light-theme .theme-switch {
-    background: rgba(26, 46, 28, 0.04) !important;
+    background: rgba(186, 202, 188, 0.332) !important;
     border-color: rgba(26, 46, 28, 0.15) !important;
 }
 
@@ -4328,7 +4386,7 @@ body.light-theme .theme-switch-indicator {
 }
 
 body.light-theme .dark-opt {
-    color: rgba(26, 46, 28, 0.45) !important;
+    color: rgba(118, 123, 118, 0.581) !important;
 }
 
 body.light-theme .light-opt {
@@ -4435,6 +4493,10 @@ body.light-theme .nav.stuck .nav-right a:hover {
 
 body.light-theme .nav.stuck .nav-back {
     color: rgba(26, 46, 28, 0.5) !important;
+}
+
+body.light-theme .nav.stuck .nav-back-arrow {
+    color: #C4541A !important;
 }
 
 body.light-theme .nav.stuck .nav-back:hover {
@@ -5030,15 +5092,26 @@ body.light-theme .sp-price small {
 }
 
 body.light-theme .sp-nutri-btn {
-    background: rgba(26, 46, 28, 0.03) !important;
-    border: 1px solid rgba(26, 46, 28, 0.1) !important;
+    background: rgba(196, 84, 26, 0.12) !important;
+    border: 2px solid #C4541A !important;
     color: #1A2E1C !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+body.light-theme .sp-nutri-btn .sp-n-icon svg {
+    stroke: #C4541A !important;
+}
+
+body.light-theme .sp-nutri-btn .sp-n-arrow {
+    color: #C4541A !important;
 }
 
 body.light-theme .sp-nutri-btn:hover {
-    background: rgba(196, 84, 26, 0.08) !important;
-    border-color: var(--orange) !important;
-    color: var(--orange) !important;
+    background: rgba(196, 84, 26, 0.22) !important;
+    border-color: #C4541A !important;
+    color: #C4541A !important;
+    box-shadow: 0 8px 24px rgba(196, 84, 26, 0.25) !important;
 }
 
 body.light-theme .sp-cross-sell {

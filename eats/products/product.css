@@ -1,4 +1,16 @@
 /* ══ SINGLE PRODUCT PAGE STYLES ══ */
+* {
+    -webkit-tap-highlight-color: transparent;
+}
+a, button, select, input, [role="button"], .vb, .fb, .sp-rec-card, .amz-btn, .qb, .theme-switch, .cart-btn, .sp-nutri-btn {
+    -webkit-tap-highlight-color: transparent !important;
+    outline: none !important;
+}
+button, select, input[type="submit"], input[type="button"], [role="button"], .vb, .fb, .amz-btn, .qb, .theme-switch, .cart-btn, .sp-nutri-btn {
+    user-select: none;
+    -webkit-user-select: none;
+}
+
 .sp-container {
     min-height: 100vh;
     padding: 120px 5% 50px;
@@ -134,7 +146,43 @@
     .sp-title { font-size: 2.5rem; }
     .sp-price-row { flex-direction: column; gap: 1.5rem; align-items: flex-start; }
     .sp-atc { width: 100%; justify-content: center; }
+
+    /* Nutrition button — visible + tightly positioned between macros line and variants */
+    .sp-nutri-btn {
+        opacity: 1 !important;
+        visibility: visible !important;
+        display: inline-flex !important;
+        background: rgba(224, 114, 64, 0.15) !important;
+        border: 2px solid #E07240 !important;
+        color: #F2EBD9 !important;
+        font-weight: 600 !important;
+        width: fit-content !important;
+        margin-top: 0.2rem !important;
+        margin-bottom: 3.2rem !important;
+        padding: 0.6rem 1.2rem !important;
+        font-size: 0.88rem !important;
+        user-select: none !important;
+        -webkit-user-select: none !important;
+        -webkit-tap-highlight-color: transparent !important;
+        outline: none !important;
+    }
+
+    .sp-variants {
+        display: flex !important;
+        gap: 0.75rem !important;
+        margin-top: 0.5rem !important;
+        margin-bottom: 1.2rem !important;
+    }
+
+    .nav-p {
+        padding: 0.8rem 1.5rem !important;
+    }
+    .nav-p.stuck {
+        padding: 0.8rem 1.5rem !important;
+    }
 }
+
+
 .nav-p {
     position: fixed;
     top: 0;
@@ -148,11 +196,21 @@
     transition: all .4s ease;
 }
 
-.nav.stuck {
+.nav-p.stuck {
     background: rgba(7, 18, 13, .92);
     backdrop-filter: blur(20px);
     border-bottom: .5px solid rgba(242, 235, 217, .06);
     padding: .8rem 3.5rem;
+}
+
+.nav-back-arrow-p {
+    font-size: 1.4rem;
+    color: #E07240;
+    margin-right: 0.2rem;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 1;
+    transition: transform 0.2s ease;
 }
 
 .nav-back-p {
@@ -167,9 +225,58 @@
     transition: color .2s;
 }
 
-.nav-back:hover {
+.nav-back-p:hover {
     color: var(--orange-l);
 }
+
+.nav-back-p:hover .nav-back-arrow-p {
+    transform: translateX(-3px);
+}
+
+/* ── Light Theme Navigation Overrides ── */
+body.light-theme .nav-p {
+    border-bottom: 0.5px solid rgba(26, 46, 28, 0.08) !important;
+}
+
+body.light-theme .nav-p.stuck {
+    background: rgba(251, 249, 244, 0.92) !important;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+
+body.light-theme .nl-g {
+    color: #1A2E1C !important;
+}
+
+body.light-theme .nav-back-p {
+    color: rgba(26, 46, 28, 0.5) !important;
+}
+
+body.light-theme .nav-back-p:hover {
+    color: var(--orange) !important;
+}
+
+body.light-theme .nav-back-arrow-p {
+    color: #C4541A !important;
+}
+
+body.light-theme .cart-btn {
+    border-color: rgba(26, 46, 28, 0.15) !important;
+    color: #1A2E1C !important;
+}
+
+body.light-theme .cart-btn:hover {
+    border-color: var(--orange) !important;
+}
+
+body.light-theme .menu-btn .menu-icon-line {
+    background-color: #1A2E1C !important;
+}
+
+body.light-theme .menu-btn.active .menu-icon-line {
+    background-color: var(--orange-l) !important;
+}
+
 
 .nav-logo-p {
     text-decoration: none;
@@ -604,41 +711,51 @@
 
 /* ── Premium Nutrition Button ── */
 .sp-nutri-btn {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(224, 114, 64, 0.15);
+    border: 2px solid #E07240;
     color: #F2EBD9;
-    padding: 0.8rem 1.4rem;
+    padding: 0.8rem 1.6rem;
     border-radius: 14px;
     font-size: 0.95rem;
-    font-weight: 500;
+    font-weight: 600;
     display: inline-flex;
     align-items: center;
     gap: 12px;
-    cursor: none;
+    cursor: pointer;
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    margin-bottom: 2rem; /* Creates space before the size variants */
+    margin-bottom: 2rem;
     backdrop-filter: blur(4px);
+    letter-spacing: 0.02em;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
 }
 
 .sp-n-icon {
     display: flex;
-    opacity: 0.6;
+    opacity: 1;
     transition: all 0.3s ease;
+}
+
+.sp-n-icon svg {
+    stroke: #E07240;
 }
 
 .sp-n-arrow {
     transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-    opacity: 0.5;
+    opacity: 0.85;
     margin-left: 4px;
+    color: #E07240;
 }
 
 /* Hover Animations */
 .sp-nutri-btn:hover {
-    background: rgba(224, 114, 64, 0.1); /* Subtle brand orange glow */
+    background: rgba(224, 114, 64, 0.28);
     border-color: #E07240;
     color: #E07240;
     transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 24px rgba(224, 114, 64, 0.3);
 }
 
 .sp-nutri-btn:hover .sp-n-icon {
@@ -646,7 +763,7 @@
 }
 
 .sp-nutri-btn:hover .sp-n-arrow {
-    transform: translateX(6px); /* Arrow shoots slightly to the right */
+    transform: translateX(6px);
     opacity: 1;
 }
 /* ══ SINGLE PRODUCT PAGE STYLES ══ */
@@ -802,25 +919,30 @@
 
 /* ── Premium Nutrition Button (Forced Visibility) ── */
 .sp-nutri-btn {
-    background: rgba(255, 255, 255, 0.06) !important;
-    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    background: rgba(224, 114, 64, 0.15) !important;
+    border: 2px solid #E07240 !important;
     color: #F2EBD9 !important;
-    padding: 0.8rem 1.4rem !important;
+    padding: 0.8rem 1.6rem !important;
     border-radius: 14px !important;
     font-size: 0.95rem !important;
-    font-weight: 500 !important;
+    font-weight: 600 !important;
     display: inline-flex !important;
     align-items: center !important;
     gap: 12px !important;
-    cursor: none !important;
+    cursor: pointer !important;
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
     position: relative !important;
     z-index: 10 !important;
+    letter-spacing: 0.02em !important;
+    user-select: none !important;
+    -webkit-user-select: none !important;
+    -webkit-tap-highlight-color: transparent !important;
+    outline: none !important;
 }
 
 .sp-n-icon {
     display: flex !important;
-    opacity: 0.7 !important;
+    opacity: 1 !important;
     transition: all 0.3s ease !important;
 }
 
@@ -830,16 +952,17 @@
 
 .sp-n-arrow {
     transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
-    opacity: 0.5 !important;
+    opacity: 0.85 !important;
     margin-left: 4px !important;
+    color: #E07240 !important;
 }
 
 .sp-nutri-btn:hover {
-    background: rgba(224, 114, 64, 0.15) !important;
+    background: rgba(224, 114, 64, 0.28) !important;
     border-color: #E07240 !important;
     color: #E07240 !important;
     transform: translateY(-3px) !important;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2) !important;
+    box-shadow: 0 8px 24px rgba(224, 114, 64, 0.3) !important;
 }
 
 .sp-nutri-btn:hover .sp-n-icon { opacity: 1 !important; }
@@ -1120,11 +1243,33 @@
     box-shadow: 0 10px 20px rgba(224, 114, 64, 0.2);
 }
 
-/* Responsive */
+/* ── Responsive ── */
 @media (max-width: 1200px) { .sp-xs-grid { grid-template-columns: 1fr; gap: 1rem; } }
 @media (max-width: 900px) {
     .sp-container { grid-template-columns: 1fr; padding-top: 100px; gap: 2rem; }
     .sp-visual { height: 40vh; }
     .sp-title { font-size: 2.5rem; }
     .sp-price-row { flex-direction: column; gap: 1.5rem; align-items: flex-start; }
+}
+
+/* ── Light Theme Overrides ── */
+body.light-theme .sp-nutri-btn {
+    background: rgba(196, 84, 26, 0.1) !important;
+    border: 2px solid #C4541A !important;
+    color: #1A2E1C !important;
+}
+
+body.light-theme .sp-nutri-btn .sp-n-icon svg {
+    stroke: #C4541A !important;
+}
+
+body.light-theme .sp-nutri-btn .sp-n-arrow {
+    color: #C4541A !important;
+}
+
+body.light-theme .sp-nutri-btn:hover {
+    background: rgba(196, 84, 26, 0.2) !important;
+    border-color: #C4541A !important;
+    color: #C4541A !important;
+    box-shadow: 0 8px 24px rgba(196, 84, 26, 0.25) !important;
 }
