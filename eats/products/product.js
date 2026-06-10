@@ -159,6 +159,44 @@ document.addEventListener('DOMContentLoaded', () => {
             localStorage.setItem('g_theme', currentTheme);
         });
     });
+
+    // Mobile Menu handler
+    const menuBtn = document.getElementById('menuBtn');
+    const fsMenu  = document.getElementById('fsMenu');
+    const fsMenuClose = document.getElementById('fsMenuClose');
+
+    if (menuBtn && fsMenu) {
+        function openMenu() {
+            menuBtn.classList.add('active');
+            fsMenu.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMenu() {
+            menuBtn.classList.remove('active');
+            fsMenu.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        menuBtn.addEventListener('click', () => {
+            if (fsMenu.classList.contains('open')) {
+                closeMenu();
+            } else {
+                openMenu();
+            }
+        });
+
+        if (fsMenuClose) {
+            fsMenuClose.addEventListener('click', closeMenu);
+        }
+
+        // Close menu when clicking links
+        fsMenu.querySelectorAll('.fs-menu-link').forEach(link => {
+            link.addEventListener('click', () => {
+                closeMenu();
+            });
+        });
+    }
 });
 
 /* ══ RENDER HTML ══ */
@@ -304,8 +342,8 @@ const cOverlay = document.getElementById('cOverlay'); if (cOverlay) cOverlay.add
 
 /* ── ANIMATIONS ── */
 function initAnimations() {
-    gsap.from('.sp-details > *:not(.sp-cross-sell)', { y: 30, opacity: 0, duration: 0.8, stagger: 0.1, ease: 'power3.out', delay: 0.2 });
-    gsap.from('.sp-cross-sell', { y: 40, opacity: 0, duration: 1, ease: 'power2.out', delay: 0.8 });
+    gsap.from('.sp-details > *:not(.sp-cross-sell)', { y: 30, opacity: 0, duration: 0.8, stagger: 0.1, ease: 'power3.out', delay: 0.2, clearProps: 'opacity,transform' });
+    gsap.from('.sp-cross-sell', { y: 40, opacity: 0, duration: 1, ease: 'power2.out', delay: 0.8, clearProps: 'opacity,transform' });
     gsap.fromTo('#spEm', { scale: 0, rotation: -45 }, { scale: 1, rotation: 0, duration: 1.5, ease: 'elastic.out(1, 0.5)' });
     gsap.to('#spEm', { y: -20, rotation: 3, duration: 2.5, ease: 'sine.inOut', yoyo: true, repeat: -1, delay: 1.5 });
 }
@@ -391,3 +429,8 @@ function initBackgroundStars() {
         attachCursor(sidebar);
     };
 })();
+
+// Header scroll stuck state
+window.addEventListener('scroll', () => {
+    document.getElementById('mainNav')?.classList.toggle('stuck', window.scrollY > 80);
+}, { passive: true });
