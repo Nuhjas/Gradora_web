@@ -146,94 +146,69 @@ if (document.getElementById('jarWrap')) {
    ═══════════════════════════════════════════════════════════ */
 
 // Use the largest/feature image per product for the hero showcase
-const HERO_CYCLE = [
-    { img: 'cashew.png',       name: 'W240 Cashew'   },
-    { img: 'almond.png',       name: 'Almond'         },
-    { img: 'pistachio.png',    name: 'USA Pistachio'  },
-    { img: '7-blendM.png',     name: '7-Blend Mix'    },
-    { img: 'seed_mix.png',     name: 'Seed Mix'       },
-    { img: 'nut_mix.png',      name: 'Nut Mix'        },
-    { img: 'pumpkin.png',      name: 'Pumpkin Seed'   },
-    { img: 'sunflower.png',    name: 'Sunflower Seed' },
-    { img: 'black_raisin.png', name: 'Black Raisin'   },
-    { img: 'flax_seed.png',    name: 'Flax Seed'      },
-];
+// const HERO_CYCLE = [
+//     { img: 'cashew.png',       name: 'W240 Cashew'   },
+//     { img: 'almond.png',       name: 'Almond'         },
+//     { img: 'pistachio.png',    name: 'USA Pistachio'  },
+//     { img: '7-blendM.png',     name: '7-Blend Mix'    },
+//     { img: 'seed_mix.png',     name: 'Seed Mix'       },
+//     { img: 'nut_mix.png',      name: 'Nut Mix'        },
+//     { img: 'pumpkin.png',      name: 'Pumpkin Seed'   },
+//     { img: 'sunflower.png',    name: 'Sunflower Seed' },
+//     { img: 'black_raisin.png', name: 'Black Raisin'   },
+//     { img: 'flax_seed.png',    name: 'Flax Seed'      },
+// ];
 
-let heroIdx = 0;
+// let heroIdx = 0;
 
-// Inject a product name label below the jar — appears on each swap
-// (function injectHeroLabel() {
-//     const wrap = document.getElementById('jarWrap');
-//     if (!wrap || document.getElementById('hero-prod-label')) return;
-//     const label = document.createElement('div');
-//     label.id = 'hero-prod-label';
-//     Object.assign(label.style, {
-//         position:      'absolute',
-//         bottom:        '-2.4rem',
-//         left:          '50%',
-//         transform:     'translateX(-50%)',
-//         opacity:       '0',
-//         whiteSpace:    'nowrap',
-//         fontSize:      '0.78rem',
-//         letterSpacing: '0.18em',
-//         textTransform: 'uppercase',
-//         color:         '#F2EBD9',
-//         pointerEvents: 'none',
-//         fontFamily:    "'MuseoModerno', sans-serif",
-//         zIndex:        '10',
-//     });
-//     if (getComputedStyle(wrap).position === 'static') wrap.style.position = 'relative';
-//     wrap.appendChild(label);
-// })();
+// function cycleHeroImage() {
+//     heroIdx = (heroIdx + 1) % HERO_CYCLE.length;
+//     const next  = HERO_CYCLE[heroIdx];
+//     const img   = document.querySelector('#jarWrap img');
+//     const label = document.getElementById('hero-prod-label');
+//     if (!img) return;
 
-function cycleHeroImage() {
-    heroIdx = (heroIdx + 1) % HERO_CYCLE.length;
-    const next  = HERO_CYCLE[heroIdx];
-    const img   = document.querySelector('#jarWrap img');
-    const label = document.getElementById('hero-prod-label');
-    if (!img) return;
+//     gsap.timeline()
+//         // Shrink + tilt away — same motion as selVar swap
+//         .to(img, {
+//             scale:    0.72,
+//             rotation: -10,
+//             opacity:  0.3,
+//             duration: 0.18,
+//             ease:     'power2.in',
+//             onComplete() { img.src = `../images/products/${next.img}`; }
+//         })
+//         // Elastic spring back with new image
+//         .to(img, {
+//             scale:    1.08,
+//             rotation:  2,
+//             opacity:  1,
+//             duration: 0.45,
+//             ease:     'elastic.out(1, 0.55)',
+//         })
+//         // Micro-settle to rest
+//         .to(img, {
+//             scale:    1,
+//             rotation: 0,
+//             duration: 0.2,
+//             ease:     'power2.out',
+//         })
+//         // Phase 4: show product name label, hold, fade out
+//         .call(() => {
+//             if (!label) return;
+//             label.textContent = next.name;
+//             gsap.timeline()
+//                 .to(label, { opacity: 1, y: -4, duration: 0.35, ease: 'power2.out' })
+//                 .to(label, { opacity: 0, y: -8, duration: 0.40, ease: 'power2.in', delay: 1.8 });
+//         });
 
-    gsap.timeline()
-        // Shrink + tilt away — same motion as selVar swap
-        .to(img, {
-            scale:    0.72,
-            rotation: -10,
-            opacity:  0.3,
-            duration: 0.18,
-            ease:     'power2.in',
-            onComplete() { img.src = `../images/products/${next.img}`; }
-        })
-        // Elastic spring back with new image
-        .to(img, {
-            scale:    1.08,
-            rotation:  2,
-            opacity:  1,
-            duration: 0.45,
-            ease:     'elastic.out(1, 0.55)',
-        })
-        // Micro-settle to rest
-        .to(img, {
-            scale:    1,
-            rotation: 0,
-            duration: 0.2,
-            ease:     'power2.out',
-        })
-        // Phase 4: show product name label, hold, fade out
-        .call(() => {
-            if (!label) return;
-            label.textContent = next.name;
-            gsap.timeline()
-                .to(label, { opacity: 1, y: -4, duration: 0.35, ease: 'power2.out' })
-                .to(label, { opacity: 0, y: -8, duration: 0.40, ease: 'power2.in', delay: 1.8 });
-        });
+//     // Schedule the next swap — recursive delayedCall keeps GSAP in control
+//     // 11.2s = exactly 4 × Y-float period (2.8s) = swaps stay phase-locked
+//     gsap.delayedCall(11.2, cycleHeroImage);
+// }
 
-    // Schedule the next swap — recursive delayedCall keeps GSAP in control
-    // 11.2s = exactly 4 × Y-float period (2.8s) = swaps stay phase-locked
-    gsap.delayedCall(11.2, cycleHeroImage);
-}
-
-// First swap fires after: entry settles (3.2s) + 1 full float (2.8s) + buffer (1.0s)
-if (document.getElementById('jarWrap')) gsap.delayedCall(IDLE_DELAY + 2.8 + 1.0, cycleHeroImage);
+// // First swap fires after: entry settles (3.2s) + 1 full float (2.8s) + buffer (1.0s)
+// if (document.getElementById('jarWrap')) gsap.delayedCall(IDLE_DELAY + 2.8 + 1.0, cycleHeroImage);
 
 
 /* ═══════════════════════════════════════════════════════════
@@ -375,112 +350,77 @@ if (ptTop && ptBottom && ptLogo) {
 /* ═══════════════════════════════════════════════════════════
    G. PRODUCT DATA
    ═══════════════════════════════════════════════════════════ */
-const PRODS = [
-    {
-        id: 'cashew', cat: 'nuts', nm: 'W240 Cashew', cat2: 'Premium Nuts',
-        bdg: { t: 'Best Seller', c: 'bh' },
-        desc: 'Large-grade W240 cashews — buttery, rich and sealed fresh. No oil, no salt. Pure as nature intended.',
-        pro: '18.2g', fib: '3.3g', ca: '#2A1A08', cb: '#3E2810',
-        vars: [
-            { l: '200g', p: 350, img: 'cashew-m.png',  a: 'https://amzn.in/d/07cVEZkl', f: 'https://www.flipkart.com/search?q=gradora+cashew+200g' },
-            { l: '350g', p: 519, img: 'cashew.png',    a: 'https://amzn.in/d/04goq5TT', f: 'https://www.flipkart.com/search?q=gradora+cashew+350g' }
-        ]
-    },
-    {
-        id: 'almond', cat: 'nuts', nm: 'Almond', cat2: 'Premium Nuts', bdg: null,
-        desc: 'Crisp, nutrient-dense almonds. No oil or salt added. High protein, high fiber. A daily health ritual.',
-        pro: '21.1g', fib: '12.5g', ca: '#3D2010', cb: '#522A14',
-        vars: [
-            { l: '250g', p: 405, img: 'almond-m.png',  a: 'https://amzn.in/d/05ImkphJ', f: 'https://www.flipkart.com/search?q=gradora+almond+250g' },
-            { l: '400g', p: 575, img: 'almond.png',    a: 'https://amzn.in/d/0hkpGSAM', f: 'https://www.flipkart.com/search?q=gradora+almond+400g' }
-        ]
-    },
-    {
-        id: 'pistachio', cat: 'nuts', nm: 'USA Pistachio', cat2: 'Premium USA Nuts',
-        bdg: { t: 'USA Grade', c: 'bn' },
-        desc: "Premium USA pistachios — naturally roasted, maximum crunch, zero additives. The world's finest grade.",
-        pro: '20.1g', fib: '10.3g', ca: '#243A14', cb: '#344E1E',
-        vars: [
-            { l: '150g', p: 365, img: 'pistachio-m.png', a: 'https://amzn.in/d/0c9E3wQm', f: 'https://www.flipkart.com/search?q=gradora+pistachio+150g' },
-            { l: '300g', p: 599, img: 'pistachio.png',   a: 'https://amzn.in/d/0fBUYpgF', f: 'https://www.flipkart.com/search?q=gradora+pistachio+300g' }
-        ]
-    },
-    {
-        id: 'pumpkin', cat: 'seeds', nm: 'Pumpkin Seed', cat2: 'Premium Seeds', bdg: null,
-        desc: 'High-protein pumpkin seeds packed with zinc and essential minerals. The powerhouse seed for daily wellness.',
-        pro: '30.2g', fib: '—', ca: '#142A12', cb: '#1E3A1A',
-        vars: [
-            { l: '150g', p: 206, img: 'pumpkin-s.png', a: 'https://amzn.in/d/0ijvShZP', f: 'https://www.flipkart.com/search?q=gradora+pumpkin+seed+150g' },
-            { l: '200g', p: 245, img: 'pumpkin-m.png', a: 'https://amzn.in/d/00z7YZHo', f: 'https://www.flipkart.com/search?q=gradora+pumpkin+seed+200g' },
-            { l: '400g', p: 359, img: 'pumpkin.png',   a: 'https://amzn.in/d/0hQzFAr7', f: 'https://www.flipkart.com/search?q=gradora+pumpkin+seed+400g' }
-        ]
-    },
-    {
-        id: 'flax', cat: 'seeds', nm: 'Flax Seed', cat2: 'Premium Seeds', bdg: null,
-        desc: 'Omega-3 rich roasted flaxseed — highest fiber in our range. Earthy, nutty and deeply nourishing.',
-        pro: '18.2g', fib: '27.3g', ca: '#2E1808', cb: '#3E220E',
-        vars: [
-            { l: '150g', p: 149, img: 'flax_seed-s.png', a: 'https://amzn.in/d/02o5nC4h', f: 'https://www.flipkart.com/search?q=gradora+flax+seed+150g' },
-            { l: '250g', p: 174, img: 'flax_seed-m.png', a: 'https://amzn.in/d/01LLMEWN', f: 'https://www.flipkart.com/search?q=gradora+flax+seed+250g' },
-            { l: '400g', p: 203, img: 'flax_seed.png',   a: 'https://amzn.in/d/0b8AP021', f: 'https://www.flipkart.com/search?q=gradora+flax+seed+400g' }
-        ]
-    },
-    {
-        id: 'sunflower', cat: 'seeds', nm: 'Sunflower Seed', cat2: 'Premium Seeds', bdg: null,
-        desc: 'Vitamin E-rich sunflower seeds — crunchy, nutty and loaded with healthy fats. Snack or sprinkle.',
-        pro: '20.7g', fib: '10.5g', ca: '#162430', cb: '#1E303E',
-        vars: [
-            { l: '100g', p: 149, img: 'sunflower-s.png', a: 'https://amzn.in/d/0en8i1sc', f: 'https://www.flipkart.com/search?q=gradora+sunflower+seed+100g' },
-            { l: '200g', p: 185, img: 'sunflower-m.png', a: 'https://amzn.in/d/0hZUxde7', f: 'https://www.flipkart.com/search?q=gradora+sunflower+seed+200g' },
-            { l: '400g', p: 235, img: 'sunflower.png',   a: 'https://amzn.in/d/02f2FklQ', f: 'https://www.flipkart.com/search?q=gradora+sunflower+seed+400g' }
-        ]
-    },
-    {
-        id: 'raisin', cat: 'nuts', nm: 'Black Raisin', cat2: 'Premium Dried Fruit', bdg: null,
-        desc: 'Naturally sweet iron-rich black raisins. No sugar coating — pure dried fruit, nothing more.',
-        pro: '3.0g', fib: '3.7g', ca: '#220818', cb: '#2E0E22',
-        vars: [
-            { l: '150g', p: 199, img: 'black_raisin-s.png', a: 'https://amzn.in/d/040GsZWs', f: 'https://www.flipkart.com/search?q=gradora+black+raisin+150g' },
-            { l: '250g', p: 259, img: 'black_raisin-m.png', a: 'https://amzn.in/d/06AuMtm3', f: 'https://www.flipkart.com/search?q=gradora+black+raisin+250g' },
-            { l: '400g', p: 339, img: 'black_raisin.png',   a: 'https://amzn.in/d/00JocTOz', f: 'https://www.flipkart.com/search?q=gradora+black+raisin+400g' }
-        ]
-    },
-    {
-        id: 'seedmix', cat: 'mixes', nm: 'Seed Mix', cat2: 'Premium Seed Mix',
-        bdg: { t: 'Top Pick', c: 'bs' },
-        desc: 'Pumpkin 40% · Sunflower 35% · Flaxseed 25% — the ultimate daily seed blend in one jar.',
-        pro: '30g', fib: '14g', ca: '#0A2018', cb: '#103020',
-        vars: [
-            { l: '150g', p: 175, img: 'seed_mix-s.png', a: 'https://amzn.in/d/02IBaxWG', f: 'https://www.flipkart.com/search?q=gradora+seed+mix+150g' },
-            { l: '250g', p: 220, img: 'seed_mix-m.png', a: 'https://amzn.in/d/0imJ9Jnc', f: 'https://www.flipkart.com/search?q=gradora+seed+mix+250g' },
-            { l: '400g', p: 279, img: 'seed_mix.png',   a: 'https://amzn.in/d/02aoIrDU', f: 'https://www.flipkart.com/search?q=gradora+seed+mix+400g' }
-        ]
-    },
-    {
-        id: 'blend7', cat: 'mixes', nm: '7-Blend Mix', cat2: 'Signature Blend',
-        bdg: { t: 'Signature', c: 'bh' },
-        desc: 'Seven superfoods: Cashew · Almond · Pistachio · Raisin · Pumpkin · Sunflower · Flaxseed. One legendary jar.',
-        pro: '16.1g', fib: '5.8g', ca: '#1A2A10', cb: '#2A3C18',
-        vars: [
-            { l: '250g', p: 345, img: '7-blendM-m.png', a: 'https://amzn.in/d/03PGBwNN', f: 'https://www.flipkart.com/search?q=gradora+7+blend+250g' },
-            { l: '400g', p: 475, img: '7-blendM.png',   a: 'https://amzn.in/d/00WJtqm5', f: 'https://www.flipkart.com/search?q=gradora+7+blend+400g' }
-        ]
-    },
-    {
-        id: 'nutmix', cat: 'mixes', nm: 'Nut Mix', cat2: 'Nut Blend',
-        bdg: { t: 'Bestseller', c: 'bh' },
-        desc: '4 superfoods: Cashew · Almond · Pistachio · Black Raisin. The premium everyday nut blend, perfected.',
-        pro: '13.8g', fib: '5.1g', ca: '#1E180A', cb: '#2E240E',
-        vars: [
-            { l: '200g', p: 340, img: 'nut_mix-m.png', a: 'https://amzn.in/d/07rv0kqs', f: 'https://www.flipkart.com/search?q=gradora+nut+mix+200g' },
-            { l: '350g', p: 499, img: 'nut_mix.png',   a: 'https://amzn.in/d/0f9b2wx4', f: 'https://www.flipkart.com/search?q=gradora+nut+mix+350g' }
-        ]
+// Supabase product storage
+let PRODS = [];
+
+async function loadProducts() {
+
+    const { data, error } = await supabaseClient
+        .from("products")
+        .select(`
+            *,
+            product_variants (
+                *,
+                variant_images (*)
+            ),
+            product_nutrition (*)
+        `)
+        .eq("active", true);
+
+    if (error) {
+        console.error(error);
+        return;
     }
-];
+
+    PRODS = data.map(p => {
+
+        const n = p.product_nutrition?.[0] || {};
+
+        return {
+
+            ...p,
+
+            nm: p.name,
+            desc: p.description,
+            cat: p.category,
+            cat2: p.category,
+
+            pro: `${n.protein || 0}g`,
+            fib: `${n.fiber || 0}g`,
+
+            ca: "#2A1A08",
+            cb: "#3E2810",
+
+            vars: p.product_variants.map(v => ({
+
+                l: `${v.weight}g`,
+                p: v.price,
+                a: v.amazon_url,
+                f: v.flipkart_url,
+
+                img:
+                    v.variant_images?.find(x => x.image_type === "front")
+                        ?.image_url ||
+
+                    v.variant_images?.[0]?.image_url ||
+
+                    ""
+
+            }))
+        };
+    });
+
+    // IMPORTANT
+    PRODS.forEach(p => {
+        selV[p.id] = p.vars.length > 1 ? 1 : 0;
+    });
+
+    console.log(PRODS);
+}
 
 let cart = JSON.parse(localStorage.getItem('g_cart') || '[]');
 const selV = {};
-PRODS.forEach(p => { selV[p.id] = p.vars.length > 1 ? 1 : 0; });
+// PRODS.forEach(p => { selV[p.id] = p.vars.length > 1 ? 1 : 0; });
 
 const save    = () => localStorage.setItem('g_cart', JSON.stringify(cart));
 const cartQty = () => cart.reduce((s, i) => s + i.qty, 0);
@@ -509,7 +449,7 @@ function render(cat = 'all') {
             <div class="pc-img-eats" onclick="openProductDetail('${p.id}')" style="cursor:none;display:flex;align-items:center;justify-content:center;height:220px;position:relative;">
                 ${bdg}
                 <div class="pc-glow"></div>
-                <img src="../images/products/${v.img}" class="pc-product-image" id="em-${p.id}" alt="${p.nm}">
+                <img src="${v.img}" class="pc-product-image" id="em-${p.id}" alt="${p.nm}">
             </div>
             <div class="pc-body">
                 <div class="pc-top-row">
@@ -559,7 +499,7 @@ window.selVar = function (pid, vi) {
     const em = document.getElementById('em-' + pid);
     gsap.timeline()
         .to(em, { scale: 0.7, rotation: -8, opacity: 0.4, duration: 0.14, ease: 'power2.in',
-            onComplete() { em.src = `../images/products/${v.img}`; }
+            onComplete() { em.src = v.img; }
         })
         .to(em, { scale: 1.08, rotation: 2, opacity: 1, duration: 0.22, ease: 'back.out(1.4)' })
         .to(em, { scale: 1, rotation: 0, duration: 0.15, ease: 'power2.out' });
@@ -620,7 +560,7 @@ function refreshCart() {
     list.innerHTML = cart.map(i => `
         <div class="c-item">
             <div class="ci-em">
-                <img src="../images/products/${i.img}" style="width:80%;height:80%;object-fit:contain;filter:drop-shadow(0 5px 10px rgba(0,0,0,0.3));">
+                <img src="${i.img}" style="width:80%;height:80%;object-fit:contain;filter:drop-shadow(0 5px 10px rgba(0,0,0,0.3));">
             </div>
             <div class="ci-inf">
                 <div class="ci-nm">${i.nm}</div>
@@ -998,5 +938,8 @@ document.addEventListener('DOMContentLoaded', () => {
 /* ═══════════════════════════════════════════════════════════
    INIT
    ═══════════════════════════════════════════════════════════ */
-render();
+(async () => {
+    await loadProducts();
+    render();
+})();
 refreshCart();
